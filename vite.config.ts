@@ -8,6 +8,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./", //设置项目的根目录
   build: {
     outDir: "docs",
   },
