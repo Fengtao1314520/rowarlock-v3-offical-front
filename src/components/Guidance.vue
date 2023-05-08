@@ -80,9 +80,9 @@
     </v-row>
   </v-card>
 </template>
+
 <script setup lang="ts">
 import { reactive } from "vue";
-
 const guidancedata = reactive({
   supportitems: [
     {
@@ -100,7 +100,12 @@ const guidancedata = reactive({
   ],
 
   functionitems: [
-    { title: "Main", desc: "Main page for RoWarlock", icon: "mdi-home" },
+    {
+      title: "Main",
+      desc: "Main page for RoWarlock",
+      icon: "mdi-home",
+      link: "/main",
+    },
     {
       title: "Private",
       desc: "Author for self's zone",
