@@ -8,7 +8,8 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./", //设置项目的根目录
+  // 静态资源基础路径 base: './' || '',
+  base: process.env.NODE_ENV === "production" ? "./" : "/",
   build: {
     outDir: "docs",
   },
