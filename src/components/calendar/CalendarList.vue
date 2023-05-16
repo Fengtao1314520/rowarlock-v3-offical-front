@@ -150,23 +150,20 @@ import {
 
 // 任务列表
 const props = defineProps({
+  // 当前日期
   date: Date,
-  attributes: Array,
+  // task
+  dailyTasks: Array<DailyTask>,
 });
-
+let localDailyTask: Array<DailyTask> = props.dailyTasks as Array<DailyTask>;
 // 是否打开弹窗
 const openDialog = ref(false);
 
 // 弹窗使用的任务
 const dialogItem = ref({});
 
-// 获取本地参数
-let localAttributes = props.attributes;
-
-// 获取本地任务
-let tasks = mockGetDailyTask(localAttributes);
 // 获取本地分组任务
-let localGroupedTasks = mockGroupDailyTask(tasks);
+let localGroupedTasks = mockGroupDailyTask(localDailyTask);
 // 赋值主alert颜色
 let groupedTasks = mockGroupAddExtra(localGroupedTasks);
 

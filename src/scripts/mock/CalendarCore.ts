@@ -1,15 +1,16 @@
-import { randomIntFrom2To6 } from "@/scripts/third/smallThird";
+import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
 import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
 import { taskType } from "@/ctypes/taskType";
 import { DailyTask } from "@/ctypes/dailyTask";
 
 /**
  * @description: 根据 attributes 获取 DailyTask 数组
+ * @deprecated 过期方法
  */
 export function mockAttributes(): any[] {
   let attributes: any[] = [];
   // 随机生成 2-6 个任务
-  let taskNum = randomIntFrom2To6();
+  let taskNum = randomIntFrom3To10();
   // 生成 DailyTask 数组
   let allTasks: DailyTask[] = generateRandomDailyTasks(taskNum);
   // 生成 attributes
@@ -24,7 +25,7 @@ export function mockAttributes(): any[] {
 /**
  * @description 创建一个 mock attribute
  */
-function createMockAttribute(dailTask: DailyTask): any {
+export function createMockAttribute(dailTask: DailyTask): any {
   let dates: any;
   let highlight: any;
   // 给颜色赋值

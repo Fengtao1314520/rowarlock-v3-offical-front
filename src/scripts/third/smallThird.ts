@@ -6,10 +6,12 @@ export function randomBoolean(): boolean {
 }
 
 /**
- * @description 随机生成一个 2-6 之间的整数
+ * @description 随机生成一个3-10之间的整数
  */
-export function randomIntFrom2To6(): number {
-  return Math.floor(Math.random() * 5) + 2;
+export function randomIntFrom3To10(): number {
+  const min = 3;
+  const max = 10;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**

@@ -1,13 +1,13 @@
 <template>
   <v-card flat>
-    <v-navigation-drawer :rail="railnav" @click="railnav = false">
+    <v-navigation-drawer :rail="railNav" @click="railNav = false">
       <v-list>
         <v-list-item title="主页" prepend-icon="mdi-home-roof">
           <template v-slot:append>
             <v-btn
               variant="text"
               icon="mdi-chevron-left"
-              @click.stop="railnav = !railnav"
+              @click.stop="railNav = !railNav"
             >
             </v-btn>
           </template>
@@ -34,7 +34,7 @@
       <v-card-text>
         <v-row>
           <v-col cols="8">
-            <calendar-main />
+            <calendar-main :date="date" :daily-tasks="dailyTasks" />
           </v-col>
           <v-col>
             <v-card color="info" flat>测试</v-card>
@@ -48,6 +48,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CalendarMain from "@/components/calendar/CalendarMain.vue";
+import { DailyTask } from "@/ctypes/dailyTask";
+import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
+import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
 
-const railnav = ref(true);
+const railNav = ref(true);
+
+let date: Date = new Date();
+// 随机生成 3-10个任务
+let taskNum = randomIntFrom3To10();
+// 生成 DailyTask 数组
+let dailyTasks: Array<DailyTask> = generateRandomDailyTasks(taskNum);
 </script>

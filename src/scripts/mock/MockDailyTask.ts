@@ -4,7 +4,7 @@ import {
   getRandomDateInThisMonth,
   getRandomDateRange,
   randomBoolean,
-  randomIntFrom2To6,
+  randomIntFrom3To10,
 } from "@/scripts/third/smallThird";
 
 /**
@@ -21,7 +21,7 @@ export function generateRandomDailyTasks(count: number): DailyTask[] {
   if (!single) {
     crossroad = 1;
   } else {
-    crossroad = randomIntFrom2To6();
+    crossroad = randomIntFrom3To10();
   }
   let taskNames = [
     "学习 TypeScript",
