@@ -24,19 +24,30 @@
     <v-app-bar flat>
       <v-app-bar-title class="font-weight-bold">
         <v-icon color="grey-darken-2" left>mdi-home</v-icon>
-        <span class="text-grey-darken-2 text-decoration-underline ml-4"
-          >Home</span
-        >
+        <span class="text-grey-darken-2 text-decoration-underline ml-4">
+          Home
+        </span>
       </v-app-bar-title>
     </v-app-bar>
 
-    <v-card color="primary">
-      <v-card-title>测试</v-card-title>
+    <v-card flat>
+      <v-card-text>
+        <v-row>
+          <v-col cols="8">
+            <calendar-main />
+          </v-col>
+          <v-col>
+            <v-card color="info" flat>测试</v-card>
+          </v-col>
+        </v-row>
+      </v-card-text>
     </v-card>
   </v-card>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-const railnav = ref(false);
+import CalendarMain from "@/components/calendar/CalendarMain.vue";
+
+const railnav = ref(true);
 </script>

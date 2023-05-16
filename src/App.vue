@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from "vue";
+import { reactive, shallowRef, watch } from "vue";
 import Layout from "@/layout/layout/Layout.vue";
 import Blank from "@/layout/blank/Blank.vue";
 import { useRouter } from "vue-router";
@@ -12,7 +12,7 @@ import { useRouter } from "vue-router";
  */
 
 const router = useRouter();
-const currentComponent = reactive({
+const currentComponent = shallowRef({
   view: Layout,
 });
 
@@ -21,13 +21,14 @@ watch(
   (routeValue) => {
     switch (routeValue.meta["layout"]) {
       case "blank":
-        currentComponent.view = Blank;
+        currentComponent.value.view = Blank;
+
         break;
       case "layout":
-        currentComponent.view = Layout;
+        currentComponent.value.view = Layout;
         break;
       default:
-        currentComponent.view = Blank;
+        currentComponent.value.view = Blank;
         break;
     }
   },
