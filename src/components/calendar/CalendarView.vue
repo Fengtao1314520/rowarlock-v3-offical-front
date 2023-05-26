@@ -27,12 +27,12 @@
           color="indigo-accent-4"
         >
           <v-alert-title class="text-body-1">
-            <span>{{ customData.task.taskName }}</span>
+            <span>{{ (customData.task as DailyTask).taskName }}</span>
             <v-spacer />
-            <span> {{ customData.task.taskDuration }} days</span>
+            <span> {{ (customData.task as DailyTask).taskDuration }} days</span>
           </v-alert-title>
           <span class="text-caption font-italic">
-            {{ customData.task.taskDescription }}
+            {{ (customData.task as DailyTask).taskDescription }}
           </span>
         </v-alert>
       </div>
@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { Calendar } from "v-calendar";
 import "v-calendar/style.css";
+import { DailyTask } from "@/ctypes/dailyTask";
 
 const props = defineProps({
   date: Date,

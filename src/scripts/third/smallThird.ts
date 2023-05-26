@@ -15,6 +15,17 @@ export function randomIntFrom3To10(): number {
 }
 
 /**
+ * @description 随机生成两个个199-299之间的整数
+ */
+export function generateRandomInt(): [number, number] {
+  const min = 199;
+  const max = 299;
+  const firstNum = Math.floor(Math.random() * (max - min + 1)) + min; // 生成第一个数
+  const secondNum = Math.floor(Math.random() * (max - firstNum + 1)) + firstNum; // 生成第二个数
+  return [firstNum, secondNum];
+}
+
+/**
  * @description 随机生成一个当月的日期
  */
 export function getRandomDateInThisMonth(): Date {

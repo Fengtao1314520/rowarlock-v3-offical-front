@@ -1,8 +1,8 @@
 import { DailyTask } from "@/ctypes/dailyTask";
 import { taskStatus, taskType } from "@/ctypes/taskType";
-
 /**
- * @description: 根据 attributes 获取 DailyTask 数组
+ * @description 根据 attributes 获取 DailyTask 数组
+ * @deprecated 失效，因为 attributes 里面的数据结构变了
  * @param attributes
  */
 export function mockGetDailyTask(attributes: any[] | undefined): DailyTask[] {
@@ -47,16 +47,18 @@ export function mockGroupAddExtra(
 ) {
   const result: Record<
     string,
-    { name: string; items: DailyTask[]; typecolor: string }
+    { name: string; items: DailyTask[]; typeColor: string; typeIcon: string }
   > = {};
 
   Object.values(records).forEach((group) => {
     const { name, items } = group;
     let singleResult = {
       ...group,
-      typecolor: "",
+      typeColor: "",
+      typeIcon: "",
     };
-    singleResult.typecolor = mockTaskTypeColor(name as taskType);
+    singleResult.typeColor = mockTaskTypeColor(name as taskType);
+    singleResult.typeIcon = mockTaskTypeIcon(name as taskType);
     // 将单个group的结果存入result对象中
     result[name] = singleResult;
   });
@@ -89,33 +91,6 @@ export function mockTaskResultIcon(tStatus: taskStatus): string {
   }
 
   return icon;
-}
-
-/**
- * @description: 根据 taskStatus 获取对应的 color
- * @param tStatus taskStatus
- */
-export function mockTaskResultColor(tStatus: taskStatus): string {
-  let color = "";
-  switch (tStatus) {
-    case taskStatus.todo:
-      color = "purple-accent-4";
-      break;
-    case taskStatus.doing:
-      color = "blue-accent-4";
-      break;
-    case taskStatus.done:
-      color = "green-accent-4";
-      break;
-    case taskStatus.block:
-      color = "red-accent-3";
-      break;
-    case taskStatus.cancel:
-      color = "amber-accent-4";
-      break;
-  }
-
-  return color;
 }
 
 /**
@@ -168,4 +143,30 @@ export function mockTaskTypeColor(tType: taskType): string {
       break;
   }
   return color;
+}
+
+/**
+ * @description: 根据 taskType 获取对应的 color
+ * @param tType taskType
+ */
+export function mockTaskTypeIcon(tType: taskType): string {
+  let icon = "";
+  switch (tType) {
+    case taskType.daily:
+      icon = "fa:fas fa-hippo";
+      break;
+    case taskType.temporary:
+      icon = "fa:fas fa-tent-arrow-turn-left";
+      break;
+    case taskType.longTerm:
+      icon = "fa:fas fa-truck";
+      break;
+    case taskType.shortTerm:
+      icon = "fa:fas fa-meteor";
+      break;
+    case taskType.other:
+      icon = "fa:fas fa-bomb";
+      break;
+  }
+  return icon;
 }

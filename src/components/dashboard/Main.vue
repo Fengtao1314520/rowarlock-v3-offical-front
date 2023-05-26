@@ -29,7 +29,6 @@
         </span>
       </v-app-bar-title>
     </v-app-bar>
-
     <v-card flat>
       <v-card-text>
         <v-row>
@@ -37,7 +36,9 @@
             <calendar-main :date="date" :daily-tasks="dailyTasks" />
           </v-col>
           <v-col>
-            <v-card color="info" flat>测试</v-card>
+            <v-card>
+              <profile-sample :daily-tasks="dailyTasks" />
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
@@ -51,6 +52,7 @@ import CalendarMain from "@/components/calendar/CalendarMain.vue";
 import { DailyTask } from "@/ctypes/dailyTask";
 import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
 import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
+import ProfileSample from "@/components/profilesample/ProfileSampleMain.vue";
 
 const railNav = ref(true);
 
