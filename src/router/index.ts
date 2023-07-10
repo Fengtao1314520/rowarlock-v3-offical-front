@@ -1,9 +1,5 @@
 // Composable
-import {
-  createRouter,
-  createWebHashHistory,
-  createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
@@ -19,8 +15,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () =>
-          import(/* webpackChunkName: "home" */ "@/views/Home.vue"),
+        component: () => import("@/views/Home.vue"),
       },
       {
         path: "/author",
@@ -28,22 +23,23 @@ const routes = [
         meta: {
           layout: "blank",
         },
-        component: () =>
-          import(
-            /* webpackChunkName: "author" */ "@/components/author/Author.vue"
-          ),
+        component: () => import("@/components/author/Author.vue"),
       },
       {
         path: "/main",
         name: "Main",
         meta: {
-          layout: "blank",
+          layout: "layout",
         },
-        component: () =>
-          import(
-            /* webpackChunkName: "dashboard" */
-            "@/components/dashboard/Main.vue"
-          ),
+        component: () => import("@/components/dashboard/Main.vue"),
+      },
+      {
+        path: "/release",
+        name: "Release",
+        meta: {
+          layout: "layout",
+        },
+        component: () => import("@/components/release/ReleaseMain.vue"),
       },
     ],
   },

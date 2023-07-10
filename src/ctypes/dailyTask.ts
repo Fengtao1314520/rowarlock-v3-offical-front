@@ -1,10 +1,6 @@
 import { taskStatus, taskType } from "@/ctypes/taskType";
 
-/**
- * @description DailyTask
- * @description 日常任务 类型
- */
-export type DailyTask = {
+export interface DailyTask {
   taskId: string;
   taskDuration: number;
   taskDate: Date | [Date, Date];
@@ -13,4 +9,4 @@ export type DailyTask = {
   taskStatus: taskStatus | string;
   taskDescription: string;
   //taskResult: taskResult;
-};
+}

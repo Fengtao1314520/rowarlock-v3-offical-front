@@ -1,23 +1,5 @@
 import { DailyTask } from "@/ctypes/dailyTask";
 import { taskStatus, taskType } from "@/ctypes/taskType";
-/**
- * @description 根据 attributes 获取 DailyTask 数组
- * @deprecated 失效，因为 attributes 里面的数据结构变了
- * @param attributes
- */
-export function mockGetDailyTask(attributes: any[] | undefined): DailyTask[] {
-  let tasks: DailyTask[] = [];
-  if (attributes) {
-    let tempTasks = attributes.map((item) => {
-      if (item.customData) {
-        return item.customData.task;
-      }
-    });
-    // 删除 undefined
-    tasks = tempTasks.filter((item) => item !== undefined);
-  }
-  return tasks;
-}
 
 /**
  * @description: 根据 DailyTask 数组，按照taskType 分组

@@ -2,7 +2,7 @@
   <div>
     <v-card color="grey-lighten-4" flat>
       <v-card-title>
-        <v-sheet class="gradient-color" :style="{ '--startColor': '#448AFF' }">
+        <v-sheet color="indigo-accent-2">
           <v-row class="text-white">
             <v-icon
               icon="fa:fas fa-arrow-up-z-a"
@@ -19,9 +19,7 @@
             <v-banner lines="two">
               <template v-slot:prepend>
                 <v-avatar
-                  rounded="0"
                   size="48"
-                  class="rounded-lg"
                   :color="getTaskTypeColor(<taskType>(item as DailyTask).taskType)"
                 >
                   <v-icon

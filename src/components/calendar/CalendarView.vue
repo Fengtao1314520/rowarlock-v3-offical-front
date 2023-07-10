@@ -10,7 +10,7 @@
         class="font-weight-bold"
         prepend-icon="mdi-calendar-today"
         label
-        color="indigo-accent-4"
+        color="indigo-accent-2"
         variant="flat"
       >
         {{ title }}

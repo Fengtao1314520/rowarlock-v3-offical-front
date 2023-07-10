@@ -3,43 +3,43 @@
     <v-sheet
       label
       size="large"
-      class="gradient-color font-weight-bold pa-2 text-subtitle-1 text-white"
-      :style="{ '--startColor': '#7E57C2' }"
+      color="indigo-accent-2"
+      class="font-weight-bold pa-2 text-subtitle-1 text-white"
     >
       <v-icon icon="fa:fas fa-dice" size="x-small" class="mb-1 mr-2"></v-icon>
       个人汇总
     </v-sheet>
-    <v-card-text>
-      <v-card rounded flat color="grey-lighten-5">
-        <v-card-title>任务类型</v-card-title>
-        <v-card-text>
-          <p class="text-6">
-            当前有
-            <strong>{{ localDailyTasks.length }}个</strong
-            >任务等待你完成。✿✿ヽ(°▽°)ノ✿
-          </p>
+    <v-card rounded flat color="grey-lighten-5">
+      <v-sheet class="ma-4" color="grey-lighten-5">
+        <p class="text-h5">任务类型</p>
+      </v-sheet>
 
-          <v-row class="ma-0 mt-6">
-            <v-col v-for="(item, i) in groupedTasks" :key="i" :value="item">
-              <v-row class="ma-0">
-                <v-avatar
-                  rounded="0"
-                  size="64"
-                  :color="item.typeColor"
-                  class="rounded-xl"
-                >
-                  <v-icon :icon="item.typeIcon" color="white" class="mx-1" />
-                </v-avatar>
-                <div class="ml-4">
-                  <p>{{ transTitle(item.name) }}</p>
-                  <p class="text-h6 text-right">{{ item.items.length }}</p>
-                </div>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </v-card-text>
+      <v-sheet class="mx-1" color="grey-lighten-5">
+        <p class="text-6 ml-4">
+          当前有
+          <strong>{{ localDailyTasks.length }}个</strong
+          >任务等待你完成。✿✿ヽ(°▽°)ノ✿
+        </p>
+        <v-row class="ma-0 mt-6">
+          <v-col v-for="(item, i) in groupedTasks" :key="i" :value="item">
+            <v-row class="ma-0">
+              <v-avatar
+                rounded="0"
+                size="64"
+                :color="item.typeColor"
+                class="rounded-xl"
+              >
+                <v-icon :icon="item.typeIcon" color="white" class="mx-1" />
+              </v-avatar>
+              <div class="ml-4">
+                <p>{{ transTitle(item.name) }}</p>
+                <p class="text-h6 text-right">{{ item.items.length }}</p>
+              </div>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-sheet>
+    </v-card>
   </v-card>
 </template>
 
@@ -51,9 +51,7 @@ import {
   mockTransTitleZH,
 } from "@/scripts/mock/CalendarList";
 import { DailyTask } from "@/ctypes/dailyTask";
-import { reactive } from "vue";
 
-const css = reactive({ default: "#82B1FF" });
 // 任务列表
 const props = defineProps({
   // 当前日期

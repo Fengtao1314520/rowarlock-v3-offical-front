@@ -13,10 +13,3 @@ export enum taskStatus {
   block = "block",
   cancel = "cancel",
 }
-/*
-export enum taskResult {
-  success = "success",
-  fail = "fail",
-  cancel = "cancel",
-}
-*/

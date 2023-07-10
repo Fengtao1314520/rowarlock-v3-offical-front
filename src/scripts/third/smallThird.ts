@@ -1,3 +1,18 @@
+import { v4 as uuidv4 } from "uuid";
+
+export function createUUID(): string {
+  return uuidv4();
+}
+
+/**
+ * @description 随机取范围内值
+ * @param min 最小值
+ * @param max 最大值
+ */
+export function getRandomInRange(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 /**
  * @description 随机生成一个布尔值
  */
@@ -17,7 +32,7 @@ export function randomIntFrom3To10(): number {
 /**
  * @description 随机生成两个个199-299之间的整数
  */
-export function generateRandomInt(): [number, number] {
+export function generateRandom199To299(): [number, number] {
   const min = 199;
   const max = 299;
   const firstNum = Math.floor(Math.random() * (max - min + 1)) + min; // 生成第一个数
@@ -88,4 +103,17 @@ export function formatDateToString2(date: Date): string {
   const day = date.getDate().toString().padStart(2, "0"); // 获取日期对象的日期，并按照两位数格式化
 
   return `${year} 年 ${month} 月 ${day} 日`; // 将年、月、日拼接成格式化的日期字符串
+}
+
+/**
+ * @description 获取当前年份以及往前两年
+ */
+export function getYearsAndBefore3(): number[] {
+  const currentYear = new Date().getFullYear(); // 获取当前年份
+  const years = [];
+  for (let i = 0; i < 3; i++) {
+    // 往前循环2年加上今年共计3年
+    years.push(currentYear - i);
+  }
+  return years;
 }

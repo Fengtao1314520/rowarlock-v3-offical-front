@@ -1,5 +1,5 @@
 import { UserInfo } from "@/ctypes/userInfo";
-import { generateRandomInt } from "@/scripts/third/smallThird";
+import { generateRandom199To299 } from "@/scripts/third/smallThird";
 
 /**
  * @description MockUserInfo
@@ -14,7 +14,7 @@ export function MockUserInfo(): UserInfo {
     userRole: "admin",
   };
   //随机值
-  let randomNumbers = generateRandomInt();
+  let randomNumbers = generateRandom199To299();
   userInfo.assignedTask = randomNumbers[1];
   userInfo.completedTask = randomNumbers[0];
 
