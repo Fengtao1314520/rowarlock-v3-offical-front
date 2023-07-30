@@ -1,5 +1,5 @@
 // Composable
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory, Router } from "vue-router";
 
 const routes = [
   {
@@ -12,9 +12,6 @@ const routes = [
         meta: {
           layout: "blank",
         },
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import("@/views/Home.vue"),
       },
       {
@@ -41,11 +38,29 @@ const routes = [
         },
         component: () => import("@/components/release/ReleaseMain.vue"),
       },
+      {
+        path: "/test",
+        name: "test",
+        meta: {
+          layout: "layout",
+        },
+        component: () => import("@/components/testtool/TestToolMain.vue"),
+      },
+
+      {
+        path: "/test/interface/:id", // 定义参数名为id
+        name: "API",
+        meta: {
+          layout: "layout",
+        },
+        component: () =>
+          import("@/components/testtool/interfacetool/InterfaceMain.vue"),
+      },
     ],
   },
 ];
 
-const router = createRouter({
+const router: Router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });

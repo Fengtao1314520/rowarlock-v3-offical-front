@@ -4,8 +4,8 @@
       <v-divider
         v-if="index !== 0"
         :thickness="2"
-        class="border-opacity-50 mx-4"
-        color="blue-accent-4"
+        class="border-opacity-75 mx-4"
+        color="indigo-accent-4"
       ></v-divider>
       <v-col cols="1" class="pb-0">
         <v-icon color="amber-accent-4" :icon="icon" size="x-small"></v-icon>

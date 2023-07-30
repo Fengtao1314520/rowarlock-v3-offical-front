@@ -20,6 +20,7 @@ const currentComponent = shallowRef(Layout);
 watch(
   () => router.currentRoute.value,
   (routeValue) => {
+    // console.log(routeValue);
     switch (routeValue.meta["layout"]) {
       case "blank":
         currentComponent.value = Blank;
@@ -32,6 +33,6 @@ watch(
         break;
     }
   },
-  { immediate: true, deep: true }
+  { immediate: true, deep: true },
 );
 </script>
