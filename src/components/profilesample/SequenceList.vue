@@ -49,10 +49,9 @@
       transition="dialog-top-transition"
       width="600"
     >
-      <template v-slot:default="{ openDialog }">
         <v-card>
           <v-card-text>
-            <v-card flat>
+            <v-card variant="flat">
               <v-card-item>
                 <template v-slot:title>
                   <v-row class="ma-0">
@@ -127,7 +126,6 @@
             <v-btn variant="text" @click="closeDetailDialog">关闭</v-btn>
           </v-card-actions>
         </v-card>
-      </template>
     </v-dialog>
   </div>
 </template>

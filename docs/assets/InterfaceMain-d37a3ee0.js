@@ -1,0 +1,1 @@
+import{d as a,aU as e,c as t,w as r,o,b as c}from"./index-42e8e5d3.js";import{V as n}from"./VCard-7daa29a0.js";const m=a({__name:"InterfaceMain",setup(s){return e.currentRoute.value.params.packageId,(p,u)=>(o(),t(n,{variant:"flat"},{default:r(()=>[c(" 测试 ")]),_:1}))}});export{m as default};
