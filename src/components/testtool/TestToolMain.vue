@@ -33,6 +33,22 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
+
+        <v-card variant="flat" class="mt-4" v-if="interfacestatusnumber">
+          <v-card-title>当前统计</v-card-title>
+          <c-view-progress-linear
+            color="indigo-accent-2"
+            prefield="总计:"
+            :viewvalue="interfacestatusnumber.detail.totalnumber"
+            :progressvalue="interfacestatusnumber.cover.totalnumber"
+          />
+          <c-view-progress-linear
+            color="green-accent-4"
+            prefield="已完成:"
+            :viewvalue="interfacestatusnumber.detail.completenumber"
+            :progressvalue="interfacestatusnumber.cover.completenumber"
+          />
+        </v-card>
       </v-col>
       <v-col>
         <v-card rounded variant="flat" v-if="selectedTool !== null">
@@ -51,11 +67,19 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import InterfaceEntrance from "@/components/testtool/interfacetool/InterfaceEntrance.vue";
+import CViewProgressLinear from "@/customization/CViewProgressLinear.vue";
+import { mockInterfaceInfos } from "@/scripts/mock/MockInterface";
 
+// 接口态数
+const interfacestatusnumber = ref();
+
+// panel的默认打开值
 const panel = ref([0, 1]);
 
+// 选中的工具
 const selectedTool = ref<any | null>(null);
 
+// 当前工具列表
 const testtoolinfos = ref([
   {
     title: "接口测试",
@@ -71,12 +95,13 @@ const testtoolinfos = ref([
 
 function moreDetail(item: any) {
   selectedTool.value = item;
+  interfacestatusnumber.value = mockInterfaceInfos();
 }
 </script>
 
 <style scoped lang="scss">
 .select-active {
-  background: linear-gradient(98deg, #536dfe, #304ffe);
+  background: linear-gradient(180deg, #448aff, #536dfe);
   color: white !important;
 }
 </style>

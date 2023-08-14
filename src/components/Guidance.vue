@@ -19,7 +19,7 @@
               RoWarlock is a tool for automating to test Web Application,
               Desktop Application and Mobile Application.
             </span>
-            <v-card flat>
+            <v-card variant="flat">
               <v-list>
                 <v-list-item
                   active-color="primary"
@@ -48,7 +48,7 @@
     <v-row>
       <v-col cols="1" />
       <v-col cols="4">
-        <v-card flat>
+        <v-card variant="flat">
           <v-card-title class="text-h4 text-blue-accent-4">
             Welcome
           </v-card-title>
@@ -107,7 +107,7 @@ const guidancedata = reactive({
       link: "/main",
     },
     {
-      title: "Private",
+      title: "Author",
       desc: "Author for self's zone",
       icon: "mdi-account-convert",
       link: "/author",

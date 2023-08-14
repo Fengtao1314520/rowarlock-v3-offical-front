@@ -1,9 +1,9 @@
 <template>
   <v-row class="ma-2">
-    <div class="text-body-1 mr-4 font-weight-bold">
+    <div class="text-body-1 mr-4 pt-4 font-weight-bold">
       {{ props.prefield }}
     </div>
-    <v-col class="pa-0">
+    <v-col class="pb-0">
       <p class="text-body-1 font-weight-medium" @click="openPackageItem()">
         {{ inputSelectedItem }}
       </p>
@@ -15,7 +15,6 @@
       ></v-divider>
     </v-col>
   </v-row>
-
   <v-dialog
     transition="dialog-top-transition"
     width="auto"

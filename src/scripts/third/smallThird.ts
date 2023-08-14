@@ -60,7 +60,7 @@ export function getRandomDateInThisMonth(): Date {
 export function getRandomDateRange(length: number): [Date, Date] {
   const startDate = getRandomDateInThisMonth();
   const endDate = new Date(
-    startDate.getTime() + (length - 1) * 24 * 60 * 60 * 1000
+    startDate.getTime() + (length - 1) * 24 * 60 * 60 * 1000,
   );
 
   return [startDate, endDate];
@@ -77,7 +77,7 @@ export function getTimeDiffPercentage(
   date1: Date,
   date2: Date,
   date3: Date,
-  duration: number
+  duration: number,
 ): number {
   if (date3 < date1) {
     // 任务尚未开始
@@ -116,4 +116,28 @@ export function getYearsAndBefore3(): number[] {
     years.push(currentYear - i);
   }
   return years;
+}
+
+/**
+ * 随机生成 JSON 对象和内容
+
+ * @param depth 生成 JSON 的深度
+
+ * @returns 生成的 JSON 对象
+
+ */
+export function generateRandomJSON(depth: number): any {
+  if (depth <= 0) {
+    // 如果深度为 0，则返回一个随机字符串作为内容
+    return Math.random().toString(36).substring(7);
+  } else {
+    const jsonObject: any = {};
+    const numKeys = Math.floor(Math.random() * 5) + 1; // 随机生成 1 到 5 个属性
+    for (let i = 0; i < numKeys; i++) {
+      const key = Math.random().toString(36).substring(7); // 随机生成属性名
+      // 递归生成属性值
+      jsonObject[key] = generateRandomJSON(depth - 1);
+    }
+    return jsonObject;
+  }
 }

@@ -10,6 +10,9 @@ import { fileURLToPath, URL } from "node:url";
 export default defineConfig({
   // 静态资源基础路径 base: './' || '',
   base: process.env.NODE_ENV === "production" ? "./" : "/",
+  optimizeDeps: {
+    include: ["vuetify"],
+  },
   build: {
     outDir: "docs",
   },

@@ -1,4 +1,8 @@
-import { createUUID, getRandomInRange } from "@/scripts/third/smallThird";
+import {
+  createUUID,
+  generateRandomJSON,
+  getRandomInRange,
+} from "@/scripts/third/smallThird";
 import {
   Body,
   FormBody,
@@ -199,9 +203,10 @@ function generateFormBodies(): FormBody[] {
  */
 function generateHResponse(): HResponse {
   const header: Header[] = generateHeaders();
-  const statuscode = Math.floor(Math.random() * 1000) + 200;
+  const statuscode = 200;
   const statustext = "OK";
-  const body = "response body";
+  // 随机生成一个json的字符串
+  const body = JSON.stringify(generateRandomJSON(3));
   const usetime = Math.floor(Math.random() * 1000);
   const reqheader: Header[] = generateHeaders();
 

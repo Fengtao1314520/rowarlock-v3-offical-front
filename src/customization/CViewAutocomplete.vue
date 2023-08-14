@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-sheet class="ma-2 d-flex">
-      <div class="text-overline mr-4 pt-1">{{ props.prefield }}</div>
+      <div class="text-body-2  mr-4 pt-2 font-weight-bold">{{ props.prefield }}</div>
       <v-autocomplete
         clearable
         hide-details="auto"

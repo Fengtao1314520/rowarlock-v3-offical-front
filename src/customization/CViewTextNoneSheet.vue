@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-col class="d-flex">
+    <v-col class="d-flex pa-0 px-2">
       <div class="text-body-1 mr-4 pt-3 font-weight-bold">
         {{ props.prefield }}
       </div>
