@@ -20,6 +20,7 @@ export function mockWebInterfacePackages() {
       name: `接口包_${i}`,
       description: `接口包描述_${i}`,
       interfaces: webInterfaceObjArray,
+      localvariables: [],
     };
     webinterfacePackages.push(tempInterfacePackages);
   }

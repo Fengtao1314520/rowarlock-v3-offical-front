@@ -2,7 +2,7 @@
   <v-card color="grey-lighten-4" variant="flat" class="ma-2">
     <v-row class="ma-0">
       <v-col cols="3">
-        <v-expansion-panels v-model="panel">
+        <v-expansion-panels :multiple="true" v-model="panel">
           <v-expansion-panel
             rounded
             v-model="panel"

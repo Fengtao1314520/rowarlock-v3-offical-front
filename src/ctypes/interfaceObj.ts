@@ -63,6 +63,9 @@ export interface HRequest {
   body: Body;
 }
 
+/**
+ * response信息
+ */
 export interface HResponse {
   /**
    * request header

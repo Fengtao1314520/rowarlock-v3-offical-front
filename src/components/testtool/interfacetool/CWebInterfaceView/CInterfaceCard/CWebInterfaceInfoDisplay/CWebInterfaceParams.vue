@@ -1,12 +1,12 @@
 <template>
   <v-card variant="flat" v-if="localHeader">
     <v-sheet class="d-flex justify-end">
-      <v-btn color="blue-accent-4" variant="text" @click="send()">
+      <v-btn color="blue-accent-4" variant="text" @click="addParams()">
         添加与设置Query参数
       </v-btn>
     </v-sheet>
     <v-virtual-scroll :items="localHeader.params" height="200" class="my-2">
-      <template v-slot:default="{ item }">
+      <template v-slot:default="{ item, index }">
         <v-list-item density="compact">
           <template v-slot:prepend>
             <v-checkbox-btn
@@ -60,6 +60,7 @@ import { HUrl } from "@/ctypes/interfaceObj.ts";
 import { ref, watch } from "vue";
 import { METHOD } from "@/ctypes/cenum/cenum.ts";
 import { EnumToArray } from "@/scripts/third/enumToArray.ts";
+import { send } from "vite";
 
 // 方法枚举列表
 const methodArray = EnumToArray(METHOD);
@@ -86,6 +87,14 @@ watch(
   },
   { immediate: true },
 );
+
+function addParams() {
+  console.log("send");
+}
+// 删除参数
+function deleteParam(item: any, index: number) {
+  localHeader.value?.params.splice(index, 1);
+}
 </script>
 
 <style scoped lang="scss">

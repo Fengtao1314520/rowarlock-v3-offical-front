@@ -114,6 +114,10 @@ const fullUrlPath = computed(() => {
     return tempurl;
   }
 });
+
+function send() {
+  console.log("send");
+}
 </script>
 
 <style scoped lang="scss">

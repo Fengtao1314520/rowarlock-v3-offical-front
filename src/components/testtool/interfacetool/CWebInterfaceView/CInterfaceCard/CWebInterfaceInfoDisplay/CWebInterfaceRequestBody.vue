@@ -5,7 +5,7 @@
       height="200"
       class="my-2"
     >
-      <template v-slot:default="{ item }">
+      <template v-slot:default="{ item, index }">
         <v-list-item density="compact">
           <template v-slot:prepend>
             <v-checkbox-btn
@@ -82,6 +82,11 @@ watch(
   },
   { immediate: true },
 );
+
+// 删除body
+function deleteBody(item: any, index: number) {
+  localRequest.value?.body.formbody.splice(index, 1);
+}
 </script>
 
 <style scoped lang="scss">
