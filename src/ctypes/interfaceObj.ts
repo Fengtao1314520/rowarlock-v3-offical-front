@@ -26,6 +26,10 @@ export interface webInterfaceObj {
    * 对象
    */
   response: HResponse;
+  /**
+   * 是否被选中
+   */
+  selected?: boolean;
 }
 
 /**
@@ -85,6 +89,11 @@ export interface HResponse {
    * request的真实header
    */
   reqheader: Array<Header>;
+
+  /**
+   * Cookies
+   */
+  cookies: Array<Cookie>;
 }
 
 /**
@@ -124,6 +133,16 @@ export interface Param {
  *FORM格式的body
  */
 export interface FormBody {
+  select: boolean; // 适配前台，是否被选择
+  key: string;
+  value: string;
+  description: string;
+}
+
+/**
+ * Cookies
+ */
+export interface Cookie {
   select: boolean; // 适配前台，是否被选择
   key: string;
   value: string;

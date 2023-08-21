@@ -242,7 +242,7 @@ watch(
       });
     });
   },
-  { immediate: false, deep: true }
+  { immediate: false, deep: true },
 );
 
 // 当前写状态

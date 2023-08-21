@@ -45,20 +45,26 @@ export function MockReleaseList() {
  * @param releaseTasks
  */
 export function mockGroupReleaseTask(
-  releaseTasks: Array<{ year: number; releaseTask: ReleaseTask }>
+  releaseTasks: Array<{ year: number; releaseTask: ReleaseTask }>,
 ) {
-  return releaseTasks.reduce((groups, item) => {
-    const key = item.year; // 以 taskType 作为分组依据
-    if (!groups[key]) {
-      groups[key] = {
-        year: key,
-        items: [],
-      };
-    }
-    groups[key].items.push(item);
+  return releaseTasks.reduce(
+    (groups, item) => {
+      const key = item.year; // 以 taskType 作为分组依据
+      if (!groups[key]) {
+        groups[key] = {
+          year: key,
+          items: [],
+        };
+      }
+      groups[key].items.push(item);
 
-    return groups;
-  }, {} as Record<string, { year: number; items: Array<{ year: number; releaseTask: ReleaseTask }> }>);
+      return groups;
+    },
+    {} as Record<
+      string,
+      { year: number; items: Array<{ year: number; releaseTask: ReleaseTask }> }
+    >,
+  );
 }
 
 function createMockReleaseRecord(year: number) {
@@ -71,7 +77,7 @@ function createMockReleaseRecord(year: number) {
     releaseType: ReleaseType.Official,
     releaseVersion: `${year}-${getRandomInRange(1, 3)}-${getRandomInRange(
       1,
-      3
+      3,
     )}-${getRandomInRange(6, 10)}.${getRandomInRange(1000, 3000)}`,
     tagNumber: randomIntFrom3To10(),
     tagType: "SVN",

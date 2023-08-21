@@ -5,7 +5,7 @@
         :method="localWebInterface.request.method"
       ></c-web-interface-card-title>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pa-1">
       <c-web-interface-card-content
         :webinterface="localWebInterface"
       ></c-web-interface-card-content>
@@ -34,7 +34,6 @@ watch(
   (newVal) => {
     if (newVal !== null && newVal !== undefined) {
       localWebInterface.value = newVal;
-      console.log(localWebInterface.value);
     }
   },
   { immediate: true },

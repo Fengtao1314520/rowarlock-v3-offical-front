@@ -6,18 +6,21 @@ import { taskStatus, taskType } from "@/ctypes/taskType";
  * @param dailyTasks
  */
 export function mockGroupDailyTask(dailyTasks: DailyTask[]) {
-  return dailyTasks.reduce((groups, item) => {
-    const key = item.taskType; // 以 taskType 作为分组依据
-    if (!groups[key]) {
-      groups[key] = {
-        name: key,
-        items: [],
-      };
-    }
-    groups[key].items.push(item);
+  return dailyTasks.reduce(
+    (groups, item) => {
+      const key = item.taskType; // 以 taskType 作为分组依据
+      if (!groups[key]) {
+        groups[key] = {
+          name: key,
+          items: [],
+        };
+      }
+      groups[key].items.push(item);
 
-    return groups;
-  }, {} as Record<string, { name: string; items: DailyTask[] }>);
+      return groups;
+    },
+    {} as Record<string, { name: string; items: DailyTask[] }>,
+  );
 }
 
 /**
@@ -25,7 +28,7 @@ export function mockGroupDailyTask(dailyTasks: DailyTask[]) {
  * @param records 已分组的 DailyTask 数组
  */
 export function mockGroupAddExtra(
-  records: Record<string, { name: string; items: DailyTask[] }>
+  records: Record<string, { name: string; items: DailyTask[] }>,
 ) {
   const result: Record<
     string,

@@ -1,7 +1,12 @@
 <template>
   <v-card>
     <v-col cols="10">
-      <v-card class="rounded-lg ma-2">
+      <v-card
+        density="compact"
+        variant="outlined"
+        color="grey-lighten-1"
+        class="rounded-lg ma-2"
+      >
         <v-card-title class="select-active">选择接口包</v-card-title>
         <v-card-text class="ma-2">
           <c-view-autocomplete
@@ -44,8 +49,8 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import {  watch,ref } from "vue";
-import {useWorkingInterfacePackageStore} from "@/stores/InterfaceStore.ts";
+import { ref, watch } from "vue";
+import { useWorkingInterfacePackageStore } from "@/stores/InterfaceStore.ts";
 import { mockWebInterfacePackages } from "@/scripts/mock/mockInterfacePackage";
 import { InterfacePackage } from "@/ctypes/interfacePackage";
 import { webInterfaceObj } from "@/ctypes/interfaceObj";
@@ -79,7 +84,7 @@ watch(
       });
     });
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 // 子组件传递给父组件的值
@@ -87,7 +92,7 @@ function selectedValueEvent(value: string) {
   if (value != "" && value != null) {
     //查询
     selectedWebInterfacePackage.value = webInterfacePacakges.value.find(
-      (element) => element.id == value
+      (element) => element.id == value,
     );
   }
 }
@@ -97,7 +102,9 @@ function intoWebInterfacePackage() {
   // 进入接口包
   if (selectedWebInterfacePackage.value != undefined) {
     // 更改Pinia Store
-    workingInferfacePackageStore.changeWorkingPackage(selectedWebInterfacePackage.value);
+    workingInferfacePackageStore.changeWorkingPackage(
+      selectedWebInterfacePackage.value,
+    );
     // 跳转，路由更改
     router.push({
       name: "API",

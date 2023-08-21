@@ -1,16 +1,16 @@
 <template>
-  <v-card flat>
+  <v-card variant="flat">
     <v-row>
       <v-col cols="4">
         <v-img
-          cover
+          :cover="true"
           :height="480"
           :width="600"
           src="../assets/logo/rowarlock-high-resolution-color-logo.png"
         ></v-img>
       </v-col>
       <v-col>
-        <v-card outlined flat class="pt-14 mt-14">
+        <v-card variant="flat" class="pt-14 mt-14">
           <v-card-title class="text-h3 font-italic text-blue-accent-4">
             RoWarlock Automaiton Tool
           </v-card-title>
@@ -22,7 +22,7 @@
             <v-card variant="flat">
               <v-list>
                 <v-list-item
-                  active-color="primary"
+                  color="primary"
                   rounded="xl"
                   v-for="(item, i) in guidancedata.supportitems"
                   :key="i"
@@ -58,7 +58,7 @@
               v-for="(item, i) in guidancedata.functionitems"
               :key="i"
               :value="item"
-              active-color="primary"
+              color="primary"
               rounded="e-xl"
               :title="item.title"
               :subtitle="item.desc"
@@ -83,6 +83,7 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+
 const guidancedata = reactive({
   supportitems: [
     {

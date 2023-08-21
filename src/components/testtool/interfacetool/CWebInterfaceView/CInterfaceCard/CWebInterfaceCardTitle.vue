@@ -1,34 +1,9 @@
 <template>
-  <v-row class="ma-n2">
-    <v-col cols="10">
-      <v-sheet class="bg-primary d-flex pa-0">
-        <v-icon class="ml-2" color="white"
-          >mdi-card-account-details-star</v-icon
-        >
-        <p class="ml-4 font-weight-bold">详情</p>
-      </v-sheet>
-    </v-col>
-    <v-spacer />
-    <v-col>
-      <v-row class="ma-n2 d-flex justify-end">
-        <v-sheet class="pa-0">
-          <v-chip
-            variant="elevated"
-            elevation="0"
-            size="large"
-            :label="true"
-            class="text-white mt-2"
-            :color="withMethodInfo.color"
-          >
-            <v-icon :start="true" icon="mdi-help-network-outline"></v-icon>
-            <span class="ml-2 font-weight-black text-body-1">{{
-              withMethodInfo.value
-            }}</span>
-          </v-chip>
-        </v-sheet>
-      </v-row>
-    </v-col>
-  </v-row>
+  <v-sheet class="d-flex pa-0" :color="withMethodInfo.color">
+    <v-chip variant="text" size="large" :label="true" class="pt-1 text-white">
+      <span class="font-weight-black">{{ withMethodInfo.value }}</span>
+    </v-chip>
+  </v-sheet>
 </template>
 
 <script setup lang="ts">

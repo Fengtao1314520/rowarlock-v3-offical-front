@@ -5,6 +5,7 @@ import {
 } from "@/scripts/third/smallThird";
 import {
   Body,
+  Cookie,
   FormBody,
   Header,
   HRequest,
@@ -210,6 +211,8 @@ function generateHResponse(): HResponse {
   const usetime = Math.floor(Math.random() * 1000);
   const reqheader: Header[] = generateHeaders();
 
+  const cookies: Cookie[] = generateCookies();
+
   return {
     header,
     statuscode,
@@ -217,5 +220,29 @@ function generateHResponse(): HResponse {
     body,
     usetime,
     reqheader,
+    cookies,
   };
+}
+
+function generateCookies(): Cookie[] {
+  const count = Math.floor(Math.random() * 6) + 1;
+  const cookies: Cookie[] = [];
+
+  for (let i = 0; i < count; i++) {
+    const select = Math.random() < 0.5;
+    const key = `key${i}`;
+    const value = `value${i}`;
+    const description = `description${i}`;
+
+    const cookie: Cookie = {
+      select,
+      key,
+      value,
+      description,
+    };
+
+    cookies.push(cookie);
+  }
+
+  return cookies;
 }

@@ -1,25 +1,30 @@
 <template>
   <v-sheet>
     <v-sheet class="ma-2 d-flex">
-      <div class="text-body-2 mr-4 pt-3 font-weight-bold">
+      <div class="text-body-2 pt-3 font-weight-bold">
         {{ props.prefield }}
       </div>
       <v-text-field
         v-if="!props.label"
         density="compact"
         hide-details="auto"
+        :hide-no-data="true"
         :placeholder="props.prefield"
         variant="outlined"
+        color="primary"
         v-model="props.values"
         :clearable="true"
+        class="customer-90"
       ></v-text-field>
       <v-text-field
         v-else
         density="compact"
         hide-details="auto"
+        :hide-no-data="true"
         :placeholder="props.prefield"
         :label="props.label"
         variant="outlined"
+        color="primary"
         v-model="props.values"
         :clearable="true"
       ></v-text-field>
@@ -45,4 +50,11 @@ const props = withDefaults(
 );
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.customer-90 {
+  transform: scale(0.9);
+}
+.customer-95 {
+  transform: scale(0.95);
+}
+</style>

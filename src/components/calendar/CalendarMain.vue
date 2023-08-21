@@ -1,5 +1,5 @@
 <template>
-  <v-card color="grey-lighten-4" flat class="rounded-lg">
+  <v-card color="grey-lighten-4" variant="flat" class="rounded-lg">
     <v-card-text>
       <calendar-core :date="props.date" :daily-tasks="props.dailyTasks" />
     </v-card-text>

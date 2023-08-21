@@ -7,9 +7,9 @@
         :color="props.color"
         class="rounded-e-xl mt-2"
         :model-value="props.progressvalue"
-        :height="24"
+        :height="18"
       >
-        <template v-slot:default="{ value }">
+        <template v-slot:default>
           <strong class="text-white">{{ props.viewvalue }}</strong>
         </template>
       </v-progress-linear>

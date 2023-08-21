@@ -17,12 +17,13 @@
               <p class="text-body-1 font-weight-bold">{{ item.title }}</p>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <v-row class="ma-0">
-                <p class="mt-1 text-subtitle-2">
+              <v-row class="ma-n1">
+                <p class="text-caption font-weight-bold">
                   {{ item.content }}
                 </p>
                 <v-spacer />
                 <v-btn
+                  size="small"
                   color="primary"
                   variant="tonal"
                   append-icon="mdi-arrow-right"
@@ -33,8 +34,12 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-
-        <v-card variant="flat" class="mt-4" v-if="interfacestatusnumber">
+        <v-card
+          variant="flat"
+          density="compact"
+          class="mt-4"
+          v-if="interfacestatusnumber"
+        >
           <v-card-title>当前统计</v-card-title>
           <c-view-progress-linear
             color="indigo-accent-2"
@@ -51,11 +56,16 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card rounded variant="flat" v-if="selectedTool !== null">
+        <v-card
+          density="compact"
+          rounded
+          variant="flat"
+          v-if="selectedTool !== null"
+        >
           <v-card-title>详情</v-card-title>
           <v-divider />
           <v-card-text v-if="selectedTool.type === 'api'" class="pa-1">
-            <interface-entrance></interface-entrance>
+            <interface-entrance />
           </v-card-text>
           <v-card-text v-else-if="selectedTool.type === 'webui'" class="pa-1">
           </v-card-text>

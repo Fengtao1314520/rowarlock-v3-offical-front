@@ -1,16 +1,20 @@
 <template>
-  <v-sheet>
+  <div>
     <v-sheet class="ma-2 d-flex">
-      <div class="text-body-2  mr-4 pt-2 font-weight-bold">{{ props.prefield }}</div>
+      <div class="text-body-2 pt-3 font-weight-bold">
+        {{ props.prefield }}
+      </div>
       <v-autocomplete
-        clearable
-        hide-details="auto"
-        density="compact"
+        v-model="selectedItem"
         :items="values"
         item-title="name"
         item-value="id"
-        v-model="selectedItem"
+        :clearable="true"
+        hide-details="auto"
+        :hide-no-data="true"
+        density="compact"
         variant="outlined"
+        class="customer-90"
       ></v-autocomplete>
     </v-sheet>
     <v-divider
@@ -18,7 +22,7 @@
       class="border-opacity-75"
       color="indigo-accent-4"
     ></v-divider>
-  </v-sheet>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -47,3 +51,12 @@ watch(
   { immediate: true },
 );
 </script>
+
+<style scoped lang="scss">
+.customer-90 {
+  transform: scale(0.9);
+}
+.customer-95 {
+  transform: scale(0.95);
+}
+</style>

@@ -4,10 +4,36 @@
       :header="localWebInterface.url"
       :method="localWebInterface.request.method"
     ></c-web-interface-header>
-    <c-web-interface-request
-      class="mt-4"
-      :request="localWebInterface.request"
-    ></c-web-interface-request>
+    <v-card variant="flat">
+      <v-card-title>
+        <v-tabs v-model="tab" color="primary">
+          <v-tab value="Params">Params(参数)</v-tab>
+          <v-tab value="Headers">Header(标头)</v-tab>
+          <v-tab value="Body">Body(内容)</v-tab>
+        </v-tabs>
+      </v-card-title>
+      <v-sheet border class="customer-95">
+        <v-window v-model="tab">
+          <v-window-item value="Params">
+            <c-web-interface-params :header="localWebInterface.url" />
+          </v-window-item>
+        </v-window>
+        <v-window v-model="tab">
+          <v-window-item value="Headers">
+            <c-web-interface-request-headers
+              :request="localWebInterface.request"
+            />
+          </v-window-item>
+        </v-window>
+        <v-window v-model="tab">
+          <v-window-item value="Body">
+            <c-web-interface-request-body
+              :request="localWebInterface.request"
+            />
+          </v-window-item>
+        </v-window>
+      </v-sheet>
+    </v-card>
     <c-web-iterface-response
       class="mt-4"
       :response="localWebInterface.response"
@@ -19,8 +45,10 @@
 import { webInterfaceObj } from "@/ctypes/interfaceObj.ts";
 import { ref, watch } from "vue";
 import CWebInterfaceHeader from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceHeader.vue";
-import CWebInterfaceRequest from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequest.vue";
 import CWebIterfaceResponse from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebIterfaceResponse.vue";
+import CWebInterfaceParams from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceParams.vue";
+import CWebInterfaceRequestHeaders from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestHeaders.vue";
+import CWebInterfaceRequestBody from "@/components/testtool/interfacetool/CWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestBody.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -28,6 +56,8 @@ const props = withDefaults(
   }>(),
   {},
 );
+
+const tab = ref("Headers");
 
 const localWebInterface = ref<webInterfaceObj>();
 
@@ -37,11 +67,21 @@ watch(
   (newVal) => {
     if (newVal !== null && newVal !== undefined) {
       localWebInterface.value = newVal;
-      console.log(localWebInterface.value);
     }
   },
   { immediate: true },
 );
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.customer-90 {
+  transform: scale(0.9);
+}
+.customer-95 {
+  transform: scale(0.95);
+}
+.bg-primary {
+  background: linear-gradient(90deg, #448aff, #536dfe);
+  color: white !important;
+}
+</style>

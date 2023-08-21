@@ -3,7 +3,7 @@
     title-position="left"
     v-model="props.date"
     expanded
-    :attributes="(props.attributes as any)"
+    :attributes="props.attributes as any"
   >
     <template v-slot:header-title="{ title }">
       <v-chip
@@ -21,7 +21,7 @@
         <v-alert
           class="pa-2"
           border="start"
-          prominent
+          :prominent="true"
           icon="mdi-hexagon-multiple-outline"
           variant="text"
           color="indigo-accent-4"

@@ -1,15 +1,15 @@
 <template>
-  <v-card flat>
+  <v-card variant="flat">
     <v-sheet
       label
       size="large"
       color="indigo-accent-2"
-      class="font-weight-bold pa-2 text-subtitle-1 text-white"
+      class="d-flex font-weight-bold pa-2 text-subtitle-1 text-white"
     >
-      <v-icon icon="fa:fas fa-dice" size="x-small" class="mb-1 mr-2"></v-icon>
-      个人汇总
+      <v-icon icon="fa:fas fa-dice" size="x-small" class="mb-1 mr-2" />
+      <p>个人汇总</p>
     </v-sheet>
-    <v-card rounded flat color="grey-lighten-5">
+    <v-card rounded variant="flat" color="grey-lighten-5">
       <v-sheet class="ma-4" color="grey-lighten-5">
         <p class="text-h5">任务类型</p>
       </v-sheet>

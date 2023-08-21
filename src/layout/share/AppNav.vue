@@ -11,9 +11,9 @@
           </v-btn>
         </template>
       </v-list-item>
-      <v-divider />
+      <v-divider class="my-2" />
       <v-list-item
-        class="rounded-e-xl"
+        class="rounded-e-lg"
         active-class="select-active"
         density="compact"
         v-for="(item, index) in navMenuList"
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
 const railNav = ref(false);
 
 // 菜单列表

@@ -20,10 +20,16 @@
               <template v-slot:prepend>
                 <v-avatar
                   size="48"
-                  :color="getTaskTypeColor(<taskType>(item as DailyTask).taskType)"
+                  :color="
+                    getTaskTypeColor(<taskType>(item as DailyTask).taskType)
+                  "
                 >
                   <v-icon
-                    :icon="getMockTaskTypeIcon(<taskType>(item as DailyTask).taskType)"
+                    :icon="
+                      getMockTaskTypeIcon(
+                        <taskType>(item as DailyTask).taskType,
+                      )
+                    "
                     color="white"
                     class="mr-1"
                   />
@@ -49,83 +55,95 @@
       transition="dialog-top-transition"
       width="600"
     >
-        <v-card>
-          <v-card-text>
-            <v-card variant="flat">
-              <v-card-item>
-                <template v-slot:title>
-                  <v-row class="ma-0">
-                    <p>{{ (dialogItem as DailyTask).taskName }}</p>
-                    <v-spacer />
-                    <v-chip
-                      label
-                      class="text-caption"
-                      :color="getTaskTypeColor(<taskType>(dialogItem as DailyTask).taskType)"
-                    >
-                      {{ transTitle((dialogItem as DailyTask).taskType) }}
-                    </v-chip>
-                  </v-row>
-                </template>
-                <template v-slot:subtitle>
-                  {{ (dialogItem as DailyTask).taskDescription }}
-                </template>
-              </v-card-item>
-              <v-card-text class="py-0">
-                <v-row align="center" no-gutters>
-                  <v-col class="text-left mr-4" cols="2">
-                    <v-icon
-                      :icon="getMockTaskTypeIcon(<taskType>(dialogItem as DailyTask).taskType)"
-                      :color="getTaskTypeColor(<taskType>(dialogItem as DailyTask).taskType)"
-                      size="64"
-                    />
-                  </v-col>
-                  <v-col class="d-flex flex-column" cols="6">
-                    <v-chip
-                      class="pl-0"
-                      color="success"
-                      size="medium"
-                      variant="text"
-                    >
-                      <v-icon icon="mdi-server-plus" start></v-icon>
-                      当前进度 ~%
-                    </v-chip>
-                    <v-progress-linear
-                      :height="20"
-                      :model-value="CalcDiff(dialogItem as DailyTask)"
-                      class="rounded-lg"
-                      color="yellow-darken-3"
-                      striped
-                    >
-                      <strong class="text-black"
-                        >{{ CalcDiff(dialogItem as DailyTask) }}%</strong
-                      >
-                    </v-progress-linear>
-                  </v-col>
-                  <v-col class="d-flex flex-column">
-                    <span class="text-right">总耗时:</span>
-                    <span class="text-h4 text-right"
-                      >{{ (dialogItem as DailyTask).taskDuration }} Days</span
-                    >
-                  </v-col>
+      <v-card>
+        <v-card-text>
+          <v-card variant="flat">
+            <v-card-item>
+              <template v-slot:title>
+                <v-row class="ma-0">
+                  <p>{{ (dialogItem as DailyTask).taskName }}</p>
+                  <v-spacer />
+                  <v-chip
+                    label
+                    class="text-caption"
+                    :color="
+                      getTaskTypeColor(
+                        <taskType>(dialogItem as DailyTask).taskType,
+                      )
+                    "
+                  >
+                    {{ transTitle((dialogItem as DailyTask).taskType) }}
+                  </v-chip>
                 </v-row>
-              </v-card-text>
-              <v-sheet
-                class="ml-4 mt-4 gradient-color text-white"
-                :style="{ '--startColor': '#536DFE' }"
-              >
-                <v-row>
-                  <v-col class="d-flex flex-column pt-0">
-                    <span>{{ ViewTimeStart(dialogItem as DailyTask) }}</span>
-                    <span>{{ ViewTimeEnd(dialogItem as DailyTask) }}</span>
-                  </v-col>
-                </v-row>
-              </v-sheet>
-            </v-card>
-          </v-card-text>
-          <v-card-actions class="justify-end">
-            <v-btn variant="text" @click="closeDetailDialog">关闭</v-btn>
-          </v-card-actions>
-        </v-card>
+              </template>
+              <template v-slot:subtitle>
+                {{ (dialogItem as DailyTask).taskDescription }}
+              </template>
+            </v-card-item>
+            <v-card-text class="py-0">
+              <v-row align="center" no-gutters>
+                <v-col class="text-left mr-4" cols="2">
+                  <v-icon
+                    :icon="
+                      getMockTaskTypeIcon(
+                        <taskType>(dialogItem as DailyTask).taskType,
+                      )
+                    "
+                    :color="
+                      getTaskTypeColor(
+                        <taskType>(dialogItem as DailyTask).taskType,
+                      )
+                    "
+                    size="64"
+                  />
+                </v-col>
+                <v-col class="d-flex flex-column" cols="6">
+                  <v-chip
+                    class="pl-0"
+                    color="success"
+                    size="medium"
+                    variant="text"
+                  >
+                    <v-icon icon="mdi-server-plus" start></v-icon>
+                    当前进度 ~%
+                  </v-chip>
+                  <v-progress-linear
+                    :height="20"
+                    :model-value="CalcDiff(dialogItem as DailyTask)"
+                    class="rounded-lg"
+                    color="yellow-darken-3"
+                    striped
+                  >
+                    <strong class="text-black"
+                      >{{ CalcDiff(dialogItem as DailyTask) }}%</strong
+                    >
+                  </v-progress-linear>
+                </v-col>
+                <v-col class="d-flex flex-column">
+                  <span class="text-right">总耗时:</span>
+                  <span class="text-h4 text-right"
+                    >{{ (dialogItem as DailyTask).taskDuration }} Days</span
+                  >
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-sheet
+              class="ml-4 mt-4 gradient-color text-white"
+              :style="{ '--startColor': '#536DFE' }"
+            >
+              <v-row>
+                <v-col class="d-flex flex-column pt-0">
+                  <span>{{ ViewTimeStart(dialogItem as DailyTask) }}</span>
+                  <span>{{ ViewTimeEnd(dialogItem as DailyTask) }}</span>
+                </v-col>
+              </v-row>
+            </v-sheet>
+          </v-card>
+        </v-card-text>
+        <v-card-actions class="justify-end">
+          <v-btn variant="text" @click="closeDetailDialog">关闭</v-btn>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -133,9 +151,8 @@
 <script lang="ts" setup>
 // 任务列表
 import { DailyTask } from "@/ctypes/dailyTask";
-import { taskStatus, taskType } from "@/ctypes/taskType";
+import { taskType } from "@/ctypes/taskType";
 import {
-  mockTaskResultIcon,
   mockTaskTypeColor,
   mockTaskTypeIcon,
   mockTransTitleZH,
@@ -233,7 +250,7 @@ function ViewTimeStart(task: DailyTask) {
     return `开始时间: ${formatDateToString2(task.taskDate as Date)}`;
   } else {
     return `开始时间: ${formatDateToString2(
-      (task.taskDate as [Date, Date])[0]
+      (task.taskDate as [Date, Date])[0],
     )}`;
   }
 }
@@ -248,7 +265,7 @@ function ViewTimeEnd(task: DailyTask) {
     return `结束时间: ${formatDateToString2(task.taskDate as Date)}`;
   } else {
     return `结束时间: ${formatDateToString2(
-      (task.taskDate as [Date, Date])[1]
+      (task.taskDate as [Date, Date])[1],
     )}`;
   }
 }

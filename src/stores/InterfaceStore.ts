@@ -1,12 +1,15 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-export const useWorkingInterfacePackageStore = defineStore('workingInterfacePackage', () => {
-    const workingpackage = ref()
+export const useWorkingInterfacePackageStore = defineStore(
+  "workingInterfacePackage",
+  () => {
+    const workingpackage = ref();
 
     function changeWorkingPackage(newPackage) {
-        workingpackage.value = newPackage
+      workingpackage.value = newPackage;
     }
 
-    return {workingpackage, changeWorkingPackage}
-})
+    return { workingpackage, changeWorkingPackage };
+  },
+);
