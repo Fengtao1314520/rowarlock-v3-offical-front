@@ -12,7 +12,7 @@
             <v-expansion-panel-title
               expand-icon="mdi-plus"
               collapse-icon="mdi-minus"
-              class="select-active"
+              class="bg-primary"
             >
               <p class="text-body-1 font-weight-bold">{{ item.title }}</p>
             </v-expansion-panel-title>
@@ -34,41 +34,13 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <v-card
-          variant="flat"
-          density="compact"
-          class="mt-4"
-          v-if="interfacestatusnumber"
-        >
-          <v-card-title>当前统计</v-card-title>
-          <c-view-progress-linear
-            color="indigo-accent-2"
-            prefield="总计:"
-            :viewvalue="interfacestatusnumber.detail.totalnumber"
-            :progressvalue="interfacestatusnumber.cover.totalnumber"
-          />
-          <c-view-progress-linear
-            color="green-accent-4"
-            prefield="已完成:"
-            :viewvalue="interfacestatusnumber.detail.completenumber"
-            :progressvalue="interfacestatusnumber.cover.completenumber"
-          />
-        </v-card>
       </v-col>
       <v-col>
-        <v-card
-          density="compact"
-          rounded
-          variant="flat"
-          v-if="selectedTool !== null"
-        >
-          <v-card-title>详情</v-card-title>
-          <v-divider />
-          <v-card-text v-if="selectedTool.type === 'api'" class="pa-1">
-            <interface-entrance />
-          </v-card-text>
-          <v-card-text v-else-if="selectedTool.type === 'webui'" class="pa-1">
-          </v-card-text>
+        <v-card density="compact" variant="flat" v-if="selectedTool">
+          <v-card-title class="bg-primary"
+            >{{ selectedTool.title }}Detail</v-card-title
+          >
+          <test-type-detail :select-tool="selectedTool" />
         </v-card>
       </v-col>
     </v-row>
@@ -76,12 +48,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import InterfaceEntrance from "@/components/testtool/interfacetool/InterfaceEntrance.vue";
-import CViewProgressLinear from "@/customization/CViewProgressLinear.vue";
-import { mockInterfaceInfos } from "@/scripts/mock/MockInterface";
-
-// 接口态数
-const interfacestatusnumber = ref();
+import TestTypeDetail from "@/components/testtool/interfacetool/detail/TestTypeDetail.vue";
 
 // panel的默认打开值
 const panel = ref([0, 1]);
@@ -103,14 +70,17 @@ const testtoolinfos = ref([
   },
 ]);
 
+/**
+ * 更多详情
+ * @param item
+ */
 function moreDetail(item: any) {
   selectedTool.value = item;
-  interfacestatusnumber.value = mockInterfaceInfos();
 }
 </script>
 
 <style scoped lang="scss">
-.select-active {
+.bg-primary {
   background: linear-gradient(180deg, #448aff, #536dfe);
   color: white !important;
 }

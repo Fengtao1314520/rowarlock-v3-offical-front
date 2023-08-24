@@ -9,5 +9,6 @@ export interface InterfacePackage<T> {
   name: string;
   description: string;
   interfaces: Array<T>;
+  preinterfaces?: Array<T>;
   localvariables?: Array<PackageLocalVariables>;
 }

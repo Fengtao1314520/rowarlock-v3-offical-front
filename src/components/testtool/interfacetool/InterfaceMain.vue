@@ -99,7 +99,7 @@ import { ref, watch } from "vue";
 import { useWorkingInterfacePackageStore } from "@/stores/InterfaceStore.ts";
 import { InterfacePackage } from "@/ctypes/interfacePackage.ts";
 import { webInterfaceObj } from "@/ctypes/interfaceObj.ts";
-import CWebInterfaceMain from "@/components/testtool/interfacetool/CWebInterfaceView/CWebInterfaceMain.vue"; // 包id
+import CWebInterfaceMain from "@/components/testtool/interfacetool/cWebInterfaceView/CWebInterfaceMain.vue"; // 包id
 
 // 包id
 const packageId = ref(router.currentRoute.value.params.id);

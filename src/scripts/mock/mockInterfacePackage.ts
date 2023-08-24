@@ -10,10 +10,9 @@ import { InterfacePackage } from "@/ctypes/interfacePackage";
 export function mockWebInterfacePackages() {
   let webinterfacePackages: Array<InterfacePackage<webInterfaceObj>> = [];
   let totalnumber = getRandomInRange(12, 18);
-
   // web接口
   let webInterfaceObjArray: Array<webInterfaceObj> = mockInterfaceObjs();
-
+  // 循环生成接口包
   for (let i = 0; i < totalnumber; i++) {
     let tempInterfacePackages: InterfacePackage<webInterfaceObj> = {
       id: createUUID(),
@@ -21,6 +20,7 @@ export function mockWebInterfacePackages() {
       description: `接口包描述_${i}`,
       interfaces: webInterfaceObjArray,
       localvariables: [],
+      preinterfaces: [],
     };
     webinterfacePackages.push(tempInterfacePackages);
   }

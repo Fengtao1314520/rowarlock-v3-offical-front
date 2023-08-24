@@ -44,7 +44,29 @@ const routes = [
         meta: {
           layout: "layout",
         },
+
         component: () => import("@/components/testtool/TestToolMain.vue"),
+      },
+
+      {
+        path: "/test/interface",
+        name: "Interface",
+        meta: {
+          layout: "layout",
+        },
+        children: [
+          {
+            path: "web", // 定义参数名为id
+            name: "WebInterface",
+            meta: {
+              layout: "layout",
+            },
+            component: () =>
+              import(
+                "@/components/testtool/interfacetool/WebInterfaceMain.vue"
+              ),
+          },
+        ],
       },
 
       {
