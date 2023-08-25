@@ -1,1 +1,0 @@
-import{W as r,cK as s,Y as e,$ as n,a as t,z as c,aq as m}from"./index-ba160bc8.js";const V=r({...s({icon:"$menu",variant:"text"})},"VAppBarNavIcon"),B=e()({name:"VAppBarNavIcon",props:V(),setup(a,o){let{slots:p}=o;return n(()=>t(m,c(a,{class:["v-app-bar-nav-icon"]}),p)),{}}});export{B as V};

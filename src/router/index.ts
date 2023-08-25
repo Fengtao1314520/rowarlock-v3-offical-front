@@ -44,7 +44,6 @@ const routes = [
         meta: {
           layout: "layout",
         },
-
         component: () => import("@/components/testtool/TestToolMain.vue"),
       },
       {
