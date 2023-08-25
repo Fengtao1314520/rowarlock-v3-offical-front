@@ -129,10 +129,15 @@ function enterIntoTestTool(selectTool: any) {
   if (selectTool.type === "api") {
     // 更改Pinia Store
     workingOneTestToolStore.changeWorkingOneTestTool(gettedTestContent.value);
+
     // 跳转
-    router.push({
-      name: "webinterface",
-    });
+    router
+      .push({
+        name: "webinterface",
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 </script>
