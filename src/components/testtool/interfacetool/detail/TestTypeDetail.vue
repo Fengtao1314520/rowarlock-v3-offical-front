@@ -65,12 +65,12 @@
 </template>
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import router from "@/router";
 import { mockInterfaceInfos } from "@/scripts/mock/MockInterface.ts";
 import TestTypeDataView from "@/components/testtool/interfacetool/detail/TestTypeDataView.vue";
 import { mockWebInterfacePackages } from "@/scripts/mock/mockInterfacePackage.ts";
 import CViewTextNoneSheet from "@/customization/CViewTextNoneSheet.vue";
 import { useWorkingOneTestToolStore } from "@/stores/OneTestToolStore.ts";
+import router from "@/router";
 
 // selectTool 选择的工具
 const props = withDefaults(

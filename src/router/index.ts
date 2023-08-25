@@ -47,7 +47,6 @@ const routes = [
 
         component: () => import("@/components/testtool/TestToolMain.vue"),
       },
-
       {
         path: "/test/interface",
         name: "Interface",
@@ -67,16 +66,6 @@ const routes = [
               ),
           },
         ],
-      },
-
-      {
-        path: "/test/interface/:id", // 定义参数名为id
-        name: "API",
-        meta: {
-          layout: "layout",
-        },
-        component: () =>
-          import("@/components/testtool/interfacetool/InterfaceMain.vue"),
       },
     ],
   },

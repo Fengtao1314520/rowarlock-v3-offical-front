@@ -7,9 +7,7 @@
           variant="text"
           @click.stop="drawer = !drawer"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title>My files</v-toolbar-title>
       </v-app-bar>
-
       <v-navigation-drawer
         v-model="drawer"
         location="left"
@@ -17,7 +15,6 @@
         :floating="true"
         :permanent="true"
       >
-        <v-divider color="primary" thickness="10" />
         <v-list
           density="compact"
           :nav="true"
