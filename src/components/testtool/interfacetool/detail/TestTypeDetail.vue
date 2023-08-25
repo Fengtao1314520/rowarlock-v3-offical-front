@@ -130,9 +130,7 @@ function enterIntoTestTool(selectTool: any) {
     // 更改Pinia Store
     workingOneTestToolStore.changeWorkingOneTestTool(gettedTestContent.value);
     // 跳转
-    router.push({
-      name: "WebInterface",
-    });
+    router.push("/test/interface/web");
   }
 }
 </script>
