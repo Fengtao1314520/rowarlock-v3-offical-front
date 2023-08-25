@@ -49,14 +49,10 @@ const routes = [
       },
       {
         path: "/test/interface",
-        name: "Interface",
-        meta: {
-          layout: "layout",
-        },
         children: [
           {
             path: "web", // 定义参数名为id
-            name: "WebInterface",
+            name: "webinterface",
             meta: {
               layout: "layout",
             },

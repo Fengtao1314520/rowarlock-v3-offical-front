@@ -131,7 +131,7 @@ function enterIntoTestTool(selectTool: any) {
     workingOneTestToolStore.changeWorkingOneTestTool(gettedTestContent.value);
     // 跳转
     router.push({
-      name: "WebInterface",
+      name: "webinterface",
     });
   }
 }
