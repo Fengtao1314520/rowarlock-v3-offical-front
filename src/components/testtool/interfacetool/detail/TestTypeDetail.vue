@@ -131,13 +131,9 @@ function enterIntoTestTool(selectTool: any) {
     workingOneTestToolStore.changeWorkingOneTestTool(gettedTestContent.value);
 
     // 跳转
-    router
-      .push({
-        name: "webinterface",
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    router.push({
+      name: "webinterface",
+    });
   }
 }
 </script>
