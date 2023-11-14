@@ -12,6 +12,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === "production" ? "./" : "/",
   optimizeDeps: {
     include: ["vuetify"],
+    exclude: ["fsevents"],
   },
   build: {
     outDir: "docs",
@@ -37,5 +38,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    open: true,
+    cors: true,
   },
 });

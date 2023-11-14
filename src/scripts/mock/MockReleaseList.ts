@@ -139,7 +139,7 @@ function createMockReleaseRecord(year: number) {
     testEnv: testEnv,
     content: content,
   };
-
+  console.log(releaseTask);
   return {
     year: year,
     releaseTask: releaseTask,
