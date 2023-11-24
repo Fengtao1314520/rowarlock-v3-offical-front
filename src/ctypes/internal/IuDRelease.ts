@@ -1,4 +1,4 @@
-import { BasicKeyValue, TaskObject } from "@/ctypes/basicTask";
+import { CuDRelease } from "@/ctypes/communicate/CuDRelease.ts";
 
 /**
  * @description 释放类型
@@ -19,6 +19,15 @@ export enum FeatureType {
   Improve = "Improve",
   // 修复
   Fix = "Fix",
+}
+
+export interface ReleaseHeader {
+  author: string;
+  createDate: string;
+  description: string;
+  modifyDate: string;
+  taskId: string;
+  title: string;
 }
 
 /**
@@ -55,15 +64,6 @@ export interface ReleaseTaskContent {
 /**
  * @description 释放任务对象
  */
-export interface ReleaseTask extends TaskObject {
-  // 任务修改时间
-  modifyDate: string;
-  // 基本信息
-  basicInfos: BasicTaskInfos;
-  // 关联配置与配置值
-  relatedConfig: Array<BasicKeyValue>;
-  // 任务内容
-  content: Array<ReleaseTaskContent>;
-  // 测试环境
-  testEnv: Array<BasicKeyValue>;
+export interface IuDRelease extends CuDRelease {
+  [key: string]: any;
 }

@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { webInterfaceObj } from "@/ctypes/interfaceObj.ts";
+import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
 import CWebInterfaceHeader from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceHeader.vue";
 import CWebIterfaceResponse from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebIterfaceResponse.vue";

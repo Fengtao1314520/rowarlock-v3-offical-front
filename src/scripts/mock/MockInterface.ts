@@ -13,7 +13,7 @@ import {
   HUrl,
   Param,
   webInterfaceObj,
-} from "@/ctypes/interfaceObj";
+} from "@/ctypes/internal/IuDInterface.ts";
 import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
 
 /**

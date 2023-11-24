@@ -50,7 +50,7 @@ import {
   mockGroupDailyTask,
   mockTransTitleZH,
 } from "@/scripts/mock/CalendarList";
-import { DailyTask } from "@/ctypes/dailyTask";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 
 // 任务列表
 const props = defineProps({

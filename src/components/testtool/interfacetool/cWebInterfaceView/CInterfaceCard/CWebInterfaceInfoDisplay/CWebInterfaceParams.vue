@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { HUrl } from "@/ctypes/interfaceObj.ts";
+import { HUrl } from "@/ctypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
 import { METHOD } from "@/ctypes/cenum/cenum.ts";
 import { EnumToArray } from "@/scripts/third/enumToArray.ts";

@@ -147,7 +147,7 @@
 
 <script lang="ts" setup>
 import { Ref, ref, watch } from "vue";
-import { ReleaseTask } from "@/ctypes/releaseTask";
+import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
 import CViewTextItem from "@/customization/CViewTextItem.vue";
 import CViewTextItemList from "@/customization/CViewTextItemList.vue";
 import {
@@ -159,13 +159,13 @@ import CViewContentList from "@/customization/CViewContentList.vue";
 
 // 父传子
 const props = defineProps<{
-  releaseTask: ReleaseTask;
+  releaseTask: IuDRelease;
 }>();
 
 const snackbar = ref(false);
 
 // 本地释放任务
-const releaseTask = ref<ReleaseTask>();
+const releaseTask = ref<IuDRelease>();
 
 // 当前记录的写状态
 let wirteStatus = ref({

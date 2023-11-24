@@ -1,16 +1,16 @@
-import { UserInfo } from "@/ctypes/userInfo";
+import { IuDUser } from "@/ctypes/internal/IuDUser.ts";
 import { generateRandom199To299 } from "@/scripts/third/smallThird";
 
 /**
  * @description MockUserInfo
  * @constructor
  */
-export function MockUserInfo(): UserInfo {
-  let userInfo: UserInfo = {
+export function MockUserInfo(): IuDUser {
+  let userInfo: IuDUser = {
     assignedTask: 0,
     completedTask: 0,
     lastLogin: new Date(),
-    userName: "Nate 冯",
+    uname: "Nate 冯",
     userRole: "admin",
   };
   //随机值

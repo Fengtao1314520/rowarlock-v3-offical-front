@@ -150,8 +150,8 @@
 
 <script lang="ts" setup>
 // 任务列表
-import { DailyTask } from "@/ctypes/dailyTask";
-import { taskType } from "@/ctypes/taskType";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { taskType } from "@/ctypes/cenum/taskType.ts";
 import {
   mockTaskTypeColor,
   mockTaskTypeIcon,

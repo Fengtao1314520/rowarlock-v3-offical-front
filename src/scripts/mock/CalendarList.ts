@@ -1,5 +1,5 @@
-import { DailyTask } from "@/ctypes/dailyTask";
-import { taskStatus, taskType } from "@/ctypes/taskType";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { taskStatus, taskType } from "@/ctypes/cenum/taskType.ts";
 
 /**
  * @description: 根据 DailyTask 数组，按照taskType 分组

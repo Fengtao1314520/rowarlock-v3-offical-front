@@ -11,19 +11,19 @@
 <script setup lang="ts">
 import ReleaseNav from "@/components/release/ReleaseNav.vue";
 import { MockReleaseList } from "@/scripts/mock/MockReleaseList";
-import { ReleaseTask } from "@/ctypes/releaseTask";
+import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
 import { ref } from "vue";
 import ReleaseView from "@/components/release/ReleaseView.vue";
 
 /// 释放记录
-const releaseRecord: Array<{ year: number; releaseTask: ReleaseTask }> =
+const releaseRecord: Array<{ year: number; releaseTask: IuDRelease }> =
   MockReleaseList();
 
-let releaseTask = ref({} as ReleaseTask);
+let releaseTask = ref({} as IuDRelease);
 
 function selectSingleReleaseRecord(item: {
   year: number;
-  releaseTask: ReleaseTask;
+  releaseTask: IuDRelease;
 }) {
   // 赋值
   releaseTask.value = item.releaseTask;

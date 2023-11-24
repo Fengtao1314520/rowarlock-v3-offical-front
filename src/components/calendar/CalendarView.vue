@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { Calendar } from "v-calendar";
 import "v-calendar/style.css";
-import { DailyTask } from "@/ctypes/dailyTask";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 
 const props = defineProps({
   date: Date,

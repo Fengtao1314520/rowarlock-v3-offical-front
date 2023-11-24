@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CalendarMain from "@/components/calendar/CalendarMain.vue";
-import { DailyTask } from "@/ctypes/dailyTask";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
 import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
 import ProfileSample from "@/components/profilesample/ProfileSampleMain.vue";

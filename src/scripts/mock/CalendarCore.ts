@@ -1,7 +1,7 @@
 import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
 import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
-import { taskType } from "@/ctypes/taskType";
-import { DailyTask } from "@/ctypes/dailyTask";
+import { taskType } from "@/ctypes/cenum/taskType.ts";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 
 /**
  * @description: 根据 attributes 获取 DailyTask 数组

@@ -3,9 +3,7 @@
     <v-row align="end">
       <v-card-text>
         <v-row class="ma-2">
-          <p class="text-primary text-h6">
-            🎉 欢迎回来 {{ userInfos.userName }}!
-          </p>
+          <p class="text-primary text-h6">🎉 欢迎回来 {{ userInfos.uname }}!</p>
           <v-spacer />
           <v-avatar color="pink">
             <v-icon icon="mdi-charity" />

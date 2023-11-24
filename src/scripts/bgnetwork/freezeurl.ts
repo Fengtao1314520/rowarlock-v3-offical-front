@@ -7,7 +7,7 @@ export const messagesbase = {
   comment: "首页，站内信，messages，根路径",
 };
 export const releasebase = {
-  value: "/release.js",
+  value: "/release",
   comment: "首页，释放管理，跟路径",
 };
 export const profilebase = {

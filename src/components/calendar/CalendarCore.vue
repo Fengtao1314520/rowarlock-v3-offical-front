@@ -12,7 +12,7 @@ import { ref } from "vue";
 import { createMockAttribute } from "@/scripts/mock/CalendarCore";
 import CalendarView from "@/components/calendar/CalendarView.vue";
 import CalendarList from "@/components/calendar/CalendarList.vue";
-import { DailyTask } from "@/ctypes/dailyTask";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 
 // 任务列表
 const props = defineProps({

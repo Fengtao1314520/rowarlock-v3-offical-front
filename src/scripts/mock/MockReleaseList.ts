@@ -9,11 +9,11 @@ import {
 import {
   BasicTaskInfos,
   FeatureType,
-  ReleaseTask,
+  IuDRelease,
   ReleaseTaskContent,
   ReleaseType,
-} from "@/ctypes/releaseTask";
-import { BasicKeyValue } from "@/ctypes/basicTask";
+} from "@/ctypes/internal/IuDRelease.ts";
+import { BasicKeyValue } from "@/ctypes/internal/basicTask.ts";
 
 /**
  * @description 创建随机的Release记录
@@ -28,7 +28,7 @@ export function MockReleaseList() {
   // 定义一个空数组
   let releaseList: Array<{
     year: number;
-    releaseTask: ReleaseTask;
+    releaseTask: IuDRelease;
   }> = [];
 
   years.forEach((year) => {
@@ -45,7 +45,7 @@ export function MockReleaseList() {
  * @param releaseTasks
  */
 export function mockGroupReleaseTask(
-  releaseTasks: Array<{ year: number; releaseTask: ReleaseTask }>,
+  releaseTasks: Array<{ year: number; releaseTask: IuDRelease }>,
 ) {
   return releaseTasks.reduce(
     (groups, item) => {
@@ -62,7 +62,7 @@ export function mockGroupReleaseTask(
     },
     {} as Record<
       string,
-      { year: number; items: Array<{ year: number; releaseTask: ReleaseTask }> }
+      { year: number; items: Array<{ year: number; releaseTask: IuDRelease }> }
     >,
   );
 }
@@ -126,7 +126,7 @@ function createMockReleaseRecord(year: number) {
   ];
 
   // 释放任务
-  let releaseTask: ReleaseTask = {
+  let releaseTask: IuDRelease = {
     author: "Nate Ford",
 
     createDate: Date.now().toString(),

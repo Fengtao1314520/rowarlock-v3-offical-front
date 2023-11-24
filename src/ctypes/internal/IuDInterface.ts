@@ -1,4 +1,5 @@
-import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
+import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum.ts";
+import { CuDInterface } from "@/ctypes/communicate/CuDInterface.ts";
 
 /**
  * 网络接口的对象定义
@@ -150,4 +151,8 @@ export interface Cookie {
   key: string;
   value: string;
   description: string;
+}
+
+export interface IuDInterface extends CuDInterface {
+  [key: string]: any;
 }

@@ -71,20 +71,20 @@
 </template>
 
 <script setup lang="ts">
-import { ReleaseTask } from "@/ctypes/releaseTask";
+import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
 import { mockGroupReleaseTask } from "@/scripts/mock/MockReleaseList";
 import { ref } from "vue";
 
 const emit = defineEmits(["selectSingleReleaseRecord"]);
 const props = defineProps({
-  releaseRecord: Array<{ year: number; releaseTask: ReleaseTask }>,
+  releaseRecord: Array<{ year: number; releaseTask: IuDRelease }>,
 });
 const railNav = ref(false);
 
 // 本地释放记录
 let localReleaseRecord = props.releaseRecord as Array<{
   year: number;
-  releaseTask: ReleaseTask;
+  releaseTask: IuDRelease;
 }>;
 /**
  * 根据year分组的释放记录
@@ -97,7 +97,7 @@ let groupReleaseRecord = mockGroupReleaseTask(localReleaseRecord);
  */
 function selectSingleReleaseRecord(item: {
   year: number;
-  releaseTask: ReleaseTask;
+  releaseTask: IuDRelease;
 }) {
   // console.log(item);
   // 转入父组件

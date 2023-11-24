@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 // 任务列表
-import { DailyTask } from "@/ctypes/dailyTask";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 import HelloAlert from "@/components/profilesample/HelloAlert.vue";
 import SequenceList from "@/components/profilesample/SequenceList.vue";
 

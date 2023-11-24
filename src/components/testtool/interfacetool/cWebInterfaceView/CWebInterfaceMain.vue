@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { webInterfaceObj } from "@/ctypes/interfaceObj.ts";
+import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
 import CWebInterfaceCardTitle from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardTitle.vue";
 import CWebInterfaceCardContent from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardContent.vue";
 

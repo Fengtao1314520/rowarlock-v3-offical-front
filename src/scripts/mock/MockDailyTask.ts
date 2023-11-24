@@ -1,5 +1,5 @@
-import { DailyTask } from "@/ctypes/dailyTask";
-import { taskStatus, taskType } from "@/ctypes/taskType";
+import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { taskStatus, taskType } from "@/ctypes/cenum/taskType.ts";
 import {
   getRandomDateInThisMonth,
   getRandomDateRange,

@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { InterfacePackage } from "@/ctypes/interfacePackage.ts";
+import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
 
 export const useWorkingInterfacePackageStore = defineStore(
   "workingInterfacePackage",
   () => {
     const workingpackage = ref();
 
-    function changeWorkingPackage(newPackage: InterfacePackage<any>) {
+    function changeWorkingPackage(newPackage: IuDInterfacePackage<any>) {
       workingpackage.value = newPackage;
     }
 
