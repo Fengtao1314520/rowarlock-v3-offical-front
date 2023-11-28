@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card color="grey-lighten-4" flat>
+    <v-card color="grey-lighten-4" variant="flat">
       <v-card-title>
         <v-sheet color="indigo-accent-2">
           <v-row class="text-white">
@@ -18,27 +18,18 @@
           <v-list-item>
             <v-banner lines="two">
               <template v-slot:prepend>
-                <v-avatar
-                  size="48"
-                  :color="
-                    getTaskTypeColor(<taskType>(item as DailyTask).taskType)
-                  "
-                >
+                <v-avatar size="48" :color="getTaskTypeColor(item.Type)">
                   <v-icon
-                    :icon="
-                      getMockTaskTypeIcon(
-                        <taskType>(item as DailyTask).taskType,
-                      )
-                    "
+                    :icon="getMockTaskTypeIcon(item.Type)"
                     color="white"
                     class="mr-1"
                   />
                 </v-avatar>
               </template>
               <template v-slot:text>
-                <p>{{ (item as DailyTask).taskName }}</p>
+                <p>{{ (item as IuDTask).TaskName }}</p>
                 <p class="text-black font-italic ml-2 text-caption">
-                  {{ (item as DailyTask).taskDescription }}
+                  {{ (item as IuDTask).TaskContent }}
                 </p>
               </template>
 
@@ -61,39 +52,27 @@
             <v-card-item>
               <template v-slot:title>
                 <v-row class="ma-0">
-                  <p>{{ (dialogItem as DailyTask).taskName }}</p>
+                  <p>{{ (dialogItem as IuDTask).TaskName }}</p>
                   <v-spacer />
                   <v-chip
                     label
                     class="text-caption"
-                    :color="
-                      getTaskTypeColor(
-                        <taskType>(dialogItem as DailyTask).taskType,
-                      )
-                    "
+                    :color="getTaskTypeColor((dialogItem as IuDTask).Type)"
                   >
-                    {{ transTitle((dialogItem as DailyTask).taskType) }}
+                    {{ transTitle((dialogItem as IuDTask).Type) }}
                   </v-chip>
                 </v-row>
               </template>
               <template v-slot:subtitle>
-                {{ (dialogItem as DailyTask).taskDescription }}
+                {{ (dialogItem as IuDTask).TaskContent }}
               </template>
             </v-card-item>
             <v-card-text class="py-0">
               <v-row align="center" no-gutters>
                 <v-col class="text-left mr-4" cols="2">
                   <v-icon
-                    :icon="
-                      getMockTaskTypeIcon(
-                        <taskType>(dialogItem as DailyTask).taskType,
-                      )
-                    "
-                    :color="
-                      getTaskTypeColor(
-                        <taskType>(dialogItem as DailyTask).taskType,
-                      )
-                    "
+                    :icon="getMockTaskTypeIcon((dialogItem as IuDTask).Type)"
+                    :color="getTaskTypeColor((dialogItem as IuDTask).Type)"
                     size="64"
                   />
                 </v-col>
@@ -104,26 +83,34 @@
                     size="medium"
                     variant="text"
                   >
-                    <v-icon icon="mdi-server-plus" start></v-icon>
+                    <v-icon icon="mdi-server-plus" start />
                     当前进度 ~%
                   </v-chip>
                   <v-progress-linear
                     :height="20"
-                    :model-value="CalcDiff(dialogItem as DailyTask)"
+                    :model-value="openDialogProgress"
                     class="rounded-lg"
                     color="yellow-darken-3"
                     striped
                   >
                     <strong class="text-black"
-                      >{{ CalcDiff(dialogItem as DailyTask) }}%</strong
+                      >{{ openDialogProgress }}%</strong
                     >
                   </v-progress-linear>
                 </v-col>
                 <v-col class="d-flex flex-column">
-                  <span class="text-right">总耗时:</span>
-                  <span class="text-h4 text-right"
-                    >{{ (dialogItem as DailyTask).taskDuration }} Days</span
-                  >
+                  <div>
+                    <span class="text-right">预期耗时:</span>
+                    <span class="text-right"
+                      >{{ (dialogItem as IuDTask).ExpandTime }} Days</span
+                    >
+                  </div>
+                  <div>
+                    <span class="text-right">已用耗时:</span>
+                    <span class="text-right"
+                      >{{ (dialogItem as IuDTask).ElapsedTime }} Days</span
+                    >
+                  </div>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -133,8 +120,8 @@
             >
               <v-row>
                 <v-col class="d-flex flex-column pt-0">
-                  <span>{{ ViewTimeStart(dialogItem as DailyTask) }}</span>
-                  <span>{{ ViewTimeEnd(dialogItem as DailyTask) }}</span>
+                  <span>开始时间: {{ (dialogItem as IuDTask).StartTime }}</span>
+                  <span>结束时间: {{ (dialogItem as IuDTask).EndTime }}</span>
                 </v-col>
               </v-row>
             </v-sheet>
@@ -150,29 +137,26 @@
 
 <script lang="ts" setup>
 // 任务列表
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
-import { taskType } from "@/ctypes/cenum/taskType.ts";
+
 import {
   mockTaskTypeColor,
   mockTaskTypeIcon,
   mockTransTitleZH,
 } from "@/scripts/mock/CalendarList";
 import { ref } from "vue";
-import {
-  formatDateToString2,
-  getTimeDiffPercentage,
-} from "@/scripts/third/smallThird";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { getMockTimeDiffPercentage } from "@/scripts/mock/CalendarCore.ts";
 
 /**
  * @description PROPS
  */
 const props = defineProps({
   // task
-  dailyTasks: Array<DailyTask>,
+  dailyTasks: Array<IuDTask>,
 });
 
 // 本地任务列表
-let localDailyTasks = props.dailyTasks as Array<DailyTask>;
+let localDailyTasks = props.dailyTasks as Array<IuDTask>;
 
 // 是否打开弹窗
 const openDialog = ref(false);
@@ -180,11 +164,13 @@ const openDialog = ref(false);
 // 弹窗使用的任务
 const dialogItem = ref({});
 
+const openDialogProgress = ref(0);
+
 /**
  * @description 任务类型颜色
  * @param tType 任务类型
  */
-function getTaskTypeColor(tType: taskType) {
+function getTaskTypeColor(tType: string) {
   return mockTaskTypeColor(tType);
 }
 
@@ -192,7 +178,7 @@ function getTaskTypeColor(tType: taskType) {
  * @description 任务类型图标
  * @param tType
  */
-function getMockTaskTypeIcon(tType: taskType) {
+function getMockTaskTypeIcon(tType: string) {
   return mockTaskTypeIcon(tType);
 }
 
@@ -211,12 +197,14 @@ function transTitle(title: string) {
 function openDetailDialog(item: any) {
   dialogItem.value = item;
   openDialog.value = true;
+  openDialogProgress.value = CalcDiff(item);
 }
 
 /**
  * @description 关闭任务详情弹窗
  */
 function closeDetailDialog() {
+  dialogItem.value = {};
   openDialog.value = false;
 }
 
@@ -225,49 +213,8 @@ function closeDetailDialog() {
  * @param task 任务
  * @constructor CalcDiff
  */
-function CalcDiff(task: DailyTask) {
-  let date1: any;
-  let date2: any;
-  let nowData = new Date();
-  if (task.taskDuration === 1) {
-    date1 = task.taskDate;
-    date2 = task.taskDate;
-  } else {
-    date1 = (task.taskDate as [Date, Date])[0];
-    date2 = (task.taskDate as [Date, Date])[1];
-  }
-
-  return getTimeDiffPercentage(date1, date2, nowData, task.taskDuration);
-}
-
-/**
- * @description 返回任务开始时间
- * @param task 任务
- * @constructor
- */
-function ViewTimeStart(task: DailyTask) {
-  if (task.taskDuration === 1) {
-    return `开始时间: ${formatDateToString2(task.taskDate as Date)}`;
-  } else {
-    return `开始时间: ${formatDateToString2(
-      (task.taskDate as [Date, Date])[0],
-    )}`;
-  }
-}
-
-/**
- * @description 返回任务结束时间
- * @param task 任务
- * @constructor
- */
-function ViewTimeEnd(task: DailyTask) {
-  if (task.taskDuration === 1) {
-    return `结束时间: ${formatDateToString2(task.taskDate as Date)}`;
-  } else {
-    return `结束时间: ${formatDateToString2(
-      (task.taskDate as [Date, Date])[1],
-    )}`;
-  }
+function CalcDiff(task: IuDTask) {
+  return getMockTimeDiffPercentage(task);
 }
 </script>
 

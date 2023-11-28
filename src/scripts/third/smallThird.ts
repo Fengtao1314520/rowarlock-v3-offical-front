@@ -1,5 +1,41 @@
 import { v4 as uuidv4 } from "uuid";
 
+/**
+ * @description: 获取当前日期
+ * @constructor
+ */
+export function NowDateTime(predate?: Date): string {
+  let date: Date;
+
+  if (predate !== undefined && predate !== null) {
+    date = predate;
+  } else {
+    date = new Date();
+  }
+  let year = date.getFullYear().toString();
+  let month = (date.getMonth() + 1).toString();
+  let day = date.getDate().toString();
+  let hour = date.getHours().toString();
+  let minute = date.getMinutes().toString();
+  let second = date.getSeconds().toString();
+  let millisecond = date.getMilliseconds().toString();
+  return (
+    year +
+    "-" +
+    month.padStart(2, "0") +
+    "-" +
+    day.padStart(2, "0") +
+    " " +
+    hour +
+    ":" +
+    minute +
+    ":" +
+    second +
+    "." +
+    millisecond.padStart(3, "0")
+  );
+}
+
 export function createUUID(): string {
   return uuidv4();
 }
@@ -30,17 +66,6 @@ export function randomIntFrom3To10(): number {
 }
 
 /**
- * @description 随机生成两个个199-299之间的整数
- */
-export function generateRandom199To299(): [number, number] {
-  const min = 199;
-  const max = 299;
-  const firstNum = Math.floor(Math.random() * (max - min + 1)) + min; // 生成第一个数
-  const secondNum = Math.floor(Math.random() * (max - firstNum + 1)) + firstNum; // 生成第二个数
-  return [firstNum, secondNum];
-}
-
-/**
  * @description 随机生成一个当月的日期
  */
 export function getRandomDateInThisMonth(): Date {
@@ -49,7 +74,6 @@ export function getRandomDateInThisMonth(): Date {
   const month = currentDate.getMonth();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const randomDay = Math.floor(Math.random() * daysInMonth) + 1;
-
   return new Date(year, month, randomDay);
 }
 
@@ -62,47 +86,7 @@ export function getRandomDateRange(length: number): [Date, Date] {
   const endDate = new Date(
     startDate.getTime() + (length - 1) * 24 * 60 * 60 * 1000,
   );
-
   return [startDate, endDate];
-}
-
-/**
- * @description 计算任务完成百分比
- * @param date1 任务开始日期
- * @param date2 任务结束日期
- * @param date3 当前日期
- * @param duration 任务持续天数
- */
-export function getTimeDiffPercentage(
-  date1: Date,
-  date2: Date,
-  date3: Date,
-  duration: number,
-): number {
-  if (date3 < date1) {
-    // 任务尚未开始
-    return 0;
-  } else if (date3 >= date2) {
-    // 任务已经结束
-    return 100;
-  } else {
-    // 计算完成百分比
-    const diff = date3.getTime() - date1.getTime(); // 时间差，单位为毫秒
-    const elapsedDays = Math.ceil(diff / (24 * 3600 * 1000)); // 已过天数，向上取整
-    return Math.round((elapsedDays / duration) * 100); // 百分比，四舍五入保留整数
-  }
-}
-
-/**
- * @description 格式化日期对象为字符串
- * @param date 日期对象
- */
-export function formatDateToString2(date: Date): string {
-  const year = date.getFullYear(); // 获取日期对象的年份
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 获取日期对象的月份，并按照两位数格式化
-  const day = date.getDate().toString().padStart(2, "0"); // 获取日期对象的日期，并按照两位数格式化
-
-  return `${year} 年 ${month} 月 ${day} 日`; // 将年、月、日拼接成格式化的日期字符串
 }
 
 /**
@@ -120,11 +104,8 @@ export function getYearsAndBefore3(): number[] {
 
 /**
  * 随机生成 JSON 对象和内容
-
  * @param depth 生成 JSON 的深度
-
  * @returns 生成的 JSON 对象
-
  */
 export function generateRandomJSON(depth: number): any {
   if (depth <= 0) {

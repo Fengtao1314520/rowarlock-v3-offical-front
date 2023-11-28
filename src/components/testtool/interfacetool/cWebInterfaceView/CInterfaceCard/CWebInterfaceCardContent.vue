@@ -42,24 +42,24 @@
 </template>
 
 <script setup lang="ts">
-import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
 import CWebInterfaceHeader from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceHeader.vue";
 import CWebIterfaceResponse from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebIterfaceResponse.vue";
 import CWebInterfaceParams from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceParams.vue";
 import CWebInterfaceRequestHeaders from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestHeaders.vue";
 import CWebInterfaceRequestBody from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestBody.vue";
+import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
 
 const props = withDefaults(
   defineProps<{
-    webinterface: webInterfaceObj;
+    webinterface: IuDInterface;
   }>(),
   {},
 );
 
 const tab = ref("Headers");
 
-const localWebInterface = ref<webInterfaceObj>();
+const localWebInterface = ref<IuDInterface>();
 
 // 监听props.webinterface的变化
 watch(

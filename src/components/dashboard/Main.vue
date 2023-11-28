@@ -14,7 +14,7 @@
       <v-card-text>
         <v-row>
           <v-col cols="8">
-            <calendar-main :date="date" :daily-tasks="dailyTasks" />
+            <calendar-main :daily-tasks="dailyTasks" />
           </v-col>
           <v-col>
             <v-card>
@@ -30,16 +30,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import CalendarMain from "@/components/calendar/CalendarMain.vue";
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
 import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
-import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
 import ProfileSample from "@/components/profilesample/ProfileSampleMain.vue";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { generateRandomDailyTasks } from "@/scripts/mock/MockTask.ts";
 
+// 参数
 const railNav = ref(true);
 
-let date: Date = new Date();
 // 随机生成 3-10个任务
 let taskNum = randomIntFrom3To10();
 // 生成 DailyTask 数组
-let dailyTasks: Array<DailyTask> = generateRandomDailyTasks(taskNum);
+let dailyTasks: Array<IuDTask> = generateRandomDailyTasks(taskNum);
+// console.log(dailyTasks);
 </script>

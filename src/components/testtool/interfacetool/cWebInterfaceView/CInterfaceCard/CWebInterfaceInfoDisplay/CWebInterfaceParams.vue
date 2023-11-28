@@ -11,8 +11,8 @@
           <template v-slot:prepend>
             <v-checkbox-btn
               color="green"
-              :model-value="item.select"
-              @click="item.select = !item.select"
+              :model-value="item.selected"
+              @click="item.selected = !item.selected"
             ></v-checkbox-btn>
           </template>
           <template v-slot>

@@ -1,37 +1,4 @@
 import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum.ts";
-import { CuDInterface } from "@/ctypes/communicate/CuDInterface.ts";
-
-/**
- * 网络接口的对象定义
- */
-export interface webInterfaceObj {
-  /**
-   * 具有唯一识别性质的guid id
-   */
-  id: string;
-  /**
-   * teststep名称
-   */
-  name: string;
-  /**
-   * url网址，以及restful api使用的参数
-   */
-  url: HUrl;
-  /**
-   * request信息
-   * 对象
-   */
-  request: HRequest;
-  /**
-   *response信息
-   * 对象
-   */
-  response: HResponse;
-  /**
-   * 是否被选中
-   */
-  selected?: boolean;
-}
 
 /**
  * url信息
@@ -49,18 +16,11 @@ export interface HUrl {
  * request信息
  */
 export interface HRequest {
-  /**
-   * POST GET等
-   */
+  // POST GET等
   method: METHOD | string;
-  /**
-   * request header
-   * CONTENTTYEP之类
-   */
+  // request header,CONTENTTYEP之类
   header: Array<Header>;
-  /**
-   * 发送内容
-   */
+  // 发送内容
   body: Body;
 }
 
@@ -68,35 +28,19 @@ export interface HRequest {
  * response信息
  */
 export interface HResponse {
-  /**
-   * request header
-   * CONTENTTYEP之类
-   */
+  // response header,CONTENTTYEP之类
   header: Array<Header>;
-  /**
-   * 状态码
-   */
+  // 状态码
   statuscode: number;
-  /**
-   * 状态文本
-   */
+  // 状态文本
   statustext: string;
-  /**
-   * 返回内容
-   */
+  // 返回内容
   body: string;
-  /**
-   * 耗时
-   */
+  // 耗时
   usetime: number;
-  /**
-   * request的真实header
-   */
+  // request的真实header
   reqheader: Array<Header>;
-
-  /**
-   * Cookies
-   */
+  // Cookies
   cookies: Array<Cookie>;
 }
 
@@ -104,7 +48,7 @@ export interface HResponse {
  * Header信息
  */
 export interface Header {
-  select: boolean; // 适配前台，是否被选择
+  selected: boolean; // 适配前台，是否被选择
   key: HEADERKEY | string;
   value: string;
   description: string;
@@ -127,17 +71,17 @@ export interface Body {
  */
 export interface Param {
   // 适配前台，是否被选择
-  select: boolean;
+  selected: boolean;
   key: string;
   value: string;
   description: string;
 }
 
 /**
- *FORM格式的body
+ * FORM格式的body
  */
 export interface FormBody {
-  select: boolean; // 适配前台，是否被选择
+  selected: boolean; // 适配前台，是否被选择
   key: string;
   value: string;
   description: string;
@@ -147,12 +91,27 @@ export interface FormBody {
  * Cookies
  */
 export interface Cookie {
-  select: boolean; // 适配前台，是否被选择
+  selected: boolean; // 适配前台，是否被选择
   key: string;
   value: string;
   description: string;
 }
 
-export interface IuDInterface extends CuDInterface {
+/**
+ * @description: 接口信息
+ */
+export interface IuDInterface {
+  // 具有唯一识别性质的guid id
+  id: string;
+  // teststep名称
+  name: string;
+  //
+  url: HUrl;
+  // request信息
+  request: HRequest;
+  // response信息
+  response: HResponse;
+  // 是否被选中
+  selected?: boolean;
   [key: string]: any;
 }

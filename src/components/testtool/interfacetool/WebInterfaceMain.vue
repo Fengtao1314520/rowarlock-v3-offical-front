@@ -68,8 +68,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useWorkingOneTestToolStore } from "@/stores/OneTestToolStore.ts";
-import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
-import WebInterfaceCard from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/WebInterfaceCard.vue"; // webinterface的包列表
+import WebInterfaceCard from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/WebInterfaceCard.vue";
+import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts"; // webinterface的包列表
 
 const drawer = ref(true);
 
@@ -100,7 +100,7 @@ function chipColor(method: string) {
 }
 
 // 打开一个webinterface
-function openWebInterface(webInterface: webInterfaceObj, index: number) {
+function openWebInterface(webInterface: IuDInterface, index: number) {
   webInterfaceCardOpt.value.addWebInterface(webInterface);
 }
 </script>

@@ -15,18 +15,19 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
+
 import CWebInterfaceCardTitle from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardTitle.vue";
 import CWebInterfaceCardContent from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardContent.vue";
+import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
 
 const props = withDefaults(
   defineProps<{
-    webinterface: webInterfaceObj;
+    webinterface: IuDInterface;
   }>(),
   {},
 );
 
-const localWebInterface = ref<webInterfaceObj>();
+const localWebInterface = ref<IuDInterface>();
 
 // 监听props.webinterface的变化
 watch(

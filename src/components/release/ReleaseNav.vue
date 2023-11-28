@@ -59,7 +59,7 @@
                 class="ml-2 text-body-2 text-white"
               >
                 <p class="font-weight-bold ml-2">
-                  {{ relItem.releaseTask.title }}
+                  {{ relItem.release.title }}
                 </p>
               </v-sheet>
             </template>
@@ -72,19 +72,19 @@
 
 <script setup lang="ts">
 import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
-import { mockGroupReleaseTask } from "@/scripts/mock/MockReleaseList";
+import { mockGroupReleaseTask } from "@/scripts/mock/MockRelease.ts";
 import { ref } from "vue";
 
 const emit = defineEmits(["selectSingleReleaseRecord"]);
 const props = defineProps({
-  releaseRecord: Array<{ year: number; releaseTask: IuDRelease }>,
+  releaseRecord: Array<{ year: number; release: IuDRelease }>,
 });
 const railNav = ref(false);
 
 // 本地释放记录
 let localReleaseRecord = props.releaseRecord as Array<{
   year: number;
-  releaseTask: IuDRelease;
+  release: IuDRelease;
 }>;
 /**
  * 根据year分组的释放记录
@@ -97,7 +97,7 @@ let groupReleaseRecord = mockGroupReleaseTask(localReleaseRecord);
  */
 function selectSingleReleaseRecord(item: {
   year: number;
-  releaseTask: IuDRelease;
+  release: IuDRelease;
 }) {
   // console.log(item);
   // 转入父组件

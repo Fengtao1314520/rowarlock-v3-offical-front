@@ -13,7 +13,6 @@
       <v-sheet class="ma-4" color="grey-lighten-5">
         <p class="text-h5">任务类型</p>
       </v-sheet>
-
       <v-sheet class="mx-1" color="grey-lighten-5">
         <p class="text-6 ml-4">
           当前有
@@ -47,23 +46,23 @@
 import "@/styles/global.scss";
 import {
   mockGroupAddExtra,
-  mockGroupDailyTask,
+  mockGroupTaskByType,
   mockTransTitleZH,
 } from "@/scripts/mock/CalendarList";
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 // 任务列表
 const props = defineProps({
   // 当前日期
   date: Date,
   // task
-  dailyTasks: Array<DailyTask>,
+  dailyTasks: Array<IuDTask>,
 });
 
 // 获取本地任务
-let localDailyTasks: Array<DailyTask> = props.dailyTasks as Array<DailyTask>;
+let localDailyTasks: Array<IuDTask> = props.dailyTasks as Array<IuDTask>;
 // 获取本地分组任务
-let localGroupedTasks = mockGroupDailyTask(localDailyTasks);
+let localGroupedTasks = mockGroupTaskByType(localDailyTasks);
 // 赋值主alert颜色
 let groupedTasks = mockGroupAddExtra(localGroupedTasks);
 

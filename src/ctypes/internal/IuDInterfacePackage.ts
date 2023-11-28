@@ -1,7 +1,9 @@
 import { PackageLocalVariables } from "@/ctypes/internal/interfaceLocalVariables.ts";
-import { CuDInterfacePackage } from "@/ctypes/communicate/CuDInterfacePackage.ts";
 
-export interface interfacePackageObj<T> {
+/**
+ * @description: 接口包信息
+ */
+export interface IuDInterfacePackage<T> {
   id: string;
   name: string;
   description: string;
@@ -9,9 +11,3 @@ export interface interfacePackageObj<T> {
   preinterfaces?: Array<T>;
   localvariables?: Array<PackageLocalVariables>;
 }
-
-/**
- * 接口包
- * 泛型 T 为接口类型
- */
-export interface IuDInterfacePackage extends CuDInterfacePackage {}

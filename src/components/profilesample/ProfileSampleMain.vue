@@ -7,12 +7,13 @@
 
 <script lang="ts" setup>
 // 任务列表
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+
 import HelloAlert from "@/components/profilesample/HelloAlert.vue";
 import SequenceList from "@/components/profilesample/SequenceList.vue";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 const props = defineProps({
   // task
-  dailyTasks: Array<DailyTask>,
+  dailyTasks: Array<IuDTask>,
 });
 </script>

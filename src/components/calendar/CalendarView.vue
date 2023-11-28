@@ -19,7 +19,7 @@
     <template v-slot:day-popover="{ attributes }">
       <div v-for="{ key, customData } in attributes" :key="key">
         <v-alert
-          class="pa-2"
+          class="ma-1"
           border="start"
           :prominent="true"
           icon="mdi-hexagon-multiple-outline"
@@ -27,13 +27,19 @@
           color="indigo-accent-4"
         >
           <v-alert-title class="text-body-1">
-            <span>{{ (customData.task as DailyTask).taskName }}</span>
+            <span>{{ (customData.task as IuDTask).TaskName }}</span>
             <v-spacer />
-            <span> {{ (customData.task as DailyTask).taskDuration }} days</span>
+            <span class="text-button font-italic">
+              已耗时:
+              {{ (customData.task as IuDTask).ElapsedTime }} days</span
+            >
           </v-alert-title>
-          <span class="text-caption font-italic">
-            {{ (customData.task as DailyTask).taskDescription }}
-          </span>
+          <p class="text-caption">
+            编号: {{ (customData.task as IuDTask).Id }}
+          </p>
+          <p class="text-caption text-grey-darken-2">
+            内容: {{ (customData.task as IuDTask).TaskContent }}
+          </p>
         </v-alert>
       </div>
     </template>
@@ -43,7 +49,7 @@
 <script setup lang="ts">
 import { Calendar } from "v-calendar";
 import "v-calendar/style.css";
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 const props = defineProps({
   date: Date,

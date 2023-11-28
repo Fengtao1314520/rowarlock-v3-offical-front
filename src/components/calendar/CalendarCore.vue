@@ -12,20 +12,20 @@ import { ref } from "vue";
 import { createMockAttribute } from "@/scripts/mock/CalendarCore";
 import CalendarView from "@/components/calendar/CalendarView.vue";
 import CalendarList from "@/components/calendar/CalendarList.vue";
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 // 任务列表
 const props = defineProps({
   // 当前日期
   date: Date,
   // task
-  dailyTasks: Array<DailyTask>,
+  dailyTasks: Array<IuDTask>,
 });
 
-// TODO: mock测试数据
+// mock测试数据
 let localAttributes = [];
 
-// 生成 attributes
+// 生成 attributes，给v-calendar使用
 props.dailyTasks?.forEach((item) => {
   let attr = createMockAttribute(item);
   localAttributes.push(attr);
@@ -37,7 +37,7 @@ let nowDay = {
     color: "gray",
     fillMode: "outline",
   },
-  dates: props.date,
+  dates: new Date(),
   popover: false,
 };
 localAttributes.push(nowDay);

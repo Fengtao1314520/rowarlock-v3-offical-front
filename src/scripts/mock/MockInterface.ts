@@ -11,8 +11,8 @@ import {
   HRequest,
   HResponse,
   HUrl,
+  IuDInterface,
   Param,
-  webInterfaceObj,
 } from "@/ctypes/internal/IuDInterface.ts";
 import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
 
@@ -20,10 +20,12 @@ import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
  * 查询接口数量，返回总数和已完成数和调试的数量
  */
 export function mockInterfaceInfos() {
+  // 随机值
   let totalnumber = getRandomInRange(233, 555);
   let donumber = getRandomInRange(23, 77);
   let completenumber = totalnumber - donumber;
 
+  // 返回值
   return {
     detail: {
       totalnumber: totalnumber,
@@ -44,7 +46,7 @@ export function mockInterfaceInfos() {
 export function mockInterfaceObjs() {
   let totalnumber: number = getRandomInRange(10, 30);
 
-  let interfaceObjs: Array<webInterfaceObj> = [];
+  let interfaceObjs: Array<IuDInterface> = [];
 
   for (let i = 0; i < totalnumber; i++) {
     const id = createUUID();
@@ -54,7 +56,7 @@ export function mockInterfaceObjs() {
     const response = generateHResponse();
 
     // 组装
-    const webInterfaceObj: webInterfaceObj = {
+    const webInterfaceObj: IuDInterface = {
       id,
       name,
       url,
@@ -94,14 +96,14 @@ function generateParams(): Param[] {
   const params: Param[] = [];
 
   for (let i = 0; i < count; i++) {
-    const select = Math.random() < 0.5;
+    const selected = Math.random() < 0.5;
     const key = `param${i}`;
     const value = `value${i}`;
     const description = `description${i}`;
 
     // 组装
     const param: Param = {
-      select,
+      selected,
       key,
       value,
       description,
@@ -137,13 +139,13 @@ function generateHeaders(): Header[] {
   const headers: Header[] = [];
 
   for (let i = 0; i < count; i++) {
-    const select = Math.random() < 0.5;
+    const selected = Math.random() < 0.5;
     const key = HEADERKEY.CONTENTTYPE;
     const value = `value${i}`;
     const description = `description${i}`;
 
     const header: Header = {
-      select,
+      selected,
       key,
       value,
       description,
@@ -180,13 +182,13 @@ function generateFormBodies(): FormBody[] {
   const formBodies: FormBody[] = [];
 
   for (let i = 0; i < count; i++) {
-    const select = Math.random() < 0.5;
+    const selected = Math.random() < 0.5;
     const key = `key${i}`;
     const value = `value${i}`;
     const description = `description${i}`;
 
     const formBody: FormBody = {
-      select,
+      selected,
       key,
       value,
       description,
@@ -229,13 +231,13 @@ function generateCookies(): Cookie[] {
   const cookies: Cookie[] = [];
 
   for (let i = 0; i < count; i++) {
-    const select = Math.random() < 0.5;
+    const selected = Math.random() < 0.5;
     const key = `key${i}`;
     const value = `value${i}`;
     const description = `description${i}`;
 
     const cookie: Cookie = {
-      select,
+      selected,
       key,
       value,
       description,

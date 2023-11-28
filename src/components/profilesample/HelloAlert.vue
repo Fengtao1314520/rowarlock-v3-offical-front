@@ -1,9 +1,11 @@
 <template>
-  <v-card color="grey-lighten-4" flat>
+  <v-card color="grey-lighten-4" variant="flat">
     <v-row align="end">
       <v-card-text>
         <v-row class="ma-2">
-          <p class="text-primary text-h6">🎉 欢迎回来 {{ userInfos.uname }}!</p>
+          <p class="text-primary text-h6">
+            🎉 欢迎回来 {{ userInfos.Unickname }}!
+          </p>
           <v-spacer />
           <v-avatar color="pink">
             <v-icon icon="mdi-charity" />
@@ -13,20 +15,20 @@
           <v-col>
             <p class="text-overline">complete</p>
             <v-card
-              flat
+              variant="flat"
               class="gradient-color text-h4 text-left text-white font-weight-bold"
               :style="{ '--startColor': '#00C853' }"
-              >{{ userInfos.completedTask }}
+              >{{ userStatistics.totalcreatetask }}
             </v-card>
           </v-col>
           <v-col>
             <p class="text-overline">assigned</p>
             <v-card
-              flat
+              variant="flat"
               class="gradient-color text-h4 tex-left text-white font-weight-bold"
               :style="{ '--startColor': '#42A5F5' }"
             >
-              {{ userInfos.assignedTask }}</v-card
+              {{ userStatistics.totalassigneetask }}</v-card
             >
           </v-col>
         </v-row>
@@ -36,11 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { MockUserInfo } from "@/scripts/mock/MockUser";
+import { MockUser } from "@/scripts/mock/MockUser.ts";
 import { ref } from "vue";
+import { generateStatistics } from "@/scripts/mock/MockStatistics.ts";
 // TODO: 获取mock用户
-let localUserInfos = MockUserInfo();
+let localUserInfos = MockUser();
+let localuserStatistics = generateStatistics();
 let userInfos = ref(localUserInfos);
+let userStatistics = ref(localuserStatistics);
 </script>
 
 <style scoped lang="scss">

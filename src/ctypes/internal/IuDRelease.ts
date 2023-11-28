@@ -1,5 +1,3 @@
-import { CuDRelease } from "@/ctypes/communicate/CuDRelease.ts";
-
 /**
  * @description 释放类型
  */
@@ -33,7 +31,7 @@ export interface ReleaseHeader {
 /**
  * @description 释放任务对象的基本信息
  */
-export interface BasicTaskInfos {
+export interface BasicInfos {
   // 产品名称
   productName: string;
   // 释放版本
@@ -55,7 +53,7 @@ export interface BasicTaskInfos {
 /**
  * @description 释放任务内容
  */
-export interface ReleaseTaskContent {
+export interface ReleaseContent {
   id: string;
   type: FeatureType;
   feature: string;
@@ -64,6 +62,16 @@ export interface ReleaseTaskContent {
 /**
  * @description 释放任务对象
  */
-export interface IuDRelease extends CuDRelease {
+export interface IuDRelease extends ReleaseHeader {
+  author: string;
+  createDate: string;
+  description: string;
+  modifyDate: string;
+  taskId: string;
+  title: string;
+  basicInfos: BasicInfos;
+  content: ReleaseContent[];
+  relatedConfig: { value: string; key: any }[];
+  testEnv: { value: string; key: any }[];
   [key: string]: any;
 }

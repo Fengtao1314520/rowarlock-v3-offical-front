@@ -30,12 +30,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
 import CWebInterfaceCardTitle from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardTitle.vue";
 import CWebInterfaceCardContent from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardContent.vue";
+import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
 
-const selectedWebInterface = ref<webInterfaceObj>();
-const openedwebInterfaceArray = ref<webInterfaceObj[]>();
+const selectedWebInterface = ref<IuDInterface>();
+const openedwebInterfaceArray = ref<IuDInterface[]>();
 
 // 一个计算属性 ref
 const withMethodInfo = computed(() => {
@@ -51,7 +51,7 @@ const withMethodInfo = computed(() => {
 });
 
 // 添加一个webinterface
-function addWebInterface(webInterface: webInterfaceObj) {
+function addWebInterface(webInterface: IuDInterface) {
   if (openedwebInterfaceArray.value != undefined) {
     // info: 需要检查是否存在同id
     let index = openedwebInterfaceArray.value.findIndex(

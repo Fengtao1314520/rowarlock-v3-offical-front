@@ -105,7 +105,7 @@ const fullUrlPath = computed(() => {
     tempurl = localHeader.value?.url + "?";
     localHeader.value?.params.forEach((element) => {
       if (element.key !== "" && element.value !== "") {
-        if (element.select) {
+        if (element.selected) {
           tempurl += element.key + "=" + element.value + "&";
         }
       }

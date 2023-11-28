@@ -1,5 +1,5 @@
 import { createUUID, getRandomInRange } from "@/scripts/third/smallThird";
-import { webInterfaceObj } from "@/ctypes/internal/IuDInterface.ts";
+import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
 import { mockInterfaceObjs } from "@/scripts/mock/MockInterface";
 import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
 
@@ -8,13 +8,13 @@ import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
  * web
  */
 export function mockWebInterfacePackages() {
-  let webinterfacePackages: Array<IuDInterfacePackage<webInterfaceObj>> = [];
+  let webinterfacePackages: Array<IuDInterfacePackage<IuDInterface>> = [];
   let totalnumber = getRandomInRange(12, 18);
   // web接口
-  let webInterfaceObjArray: Array<webInterfaceObj> = mockInterfaceObjs();
+  let webInterfaceObjArray: Array<IuDInterface> = mockInterfaceObjs();
   // 循环生成接口包
   for (let i = 0; i < totalnumber; i++) {
-    let tempInterfacePackages: IuDInterfacePackage<webInterfaceObj> = {
+    let tempInterfacePackages: IuDInterfacePackage<IuDInterface> = {
       id: createUUID(),
       name: `接口包_${i}`,
       description: `接口包描述_${i}`,

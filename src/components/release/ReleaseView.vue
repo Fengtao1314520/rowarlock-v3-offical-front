@@ -14,18 +14,18 @@
       </v-btn>
     </v-toolbar>
     <v-card color="white" flat>
-      <v-sheet v-if="!releaseTask"></v-sheet>
+      <v-sheet v-if="!release"></v-sheet>
       <v-form v-else :disabled="!wirteStatus.status">
         <v-row>
           <v-col cols="8">
             <c-view-text-item
-              :values="releaseTask.title"
+              :values="release.title"
               color="deep-purple-accent-3"
               prefield="任务名称:"
           /></v-col>
           <v-col>
             <c-view-text-item
-              :values="releaseTask.author"
+              :values="release.author"
               color="deep-purple-accent-3"
               prefield="创建人:"
             />
@@ -34,14 +34,14 @@
         <v-row>
           <v-col>
             <c-view-text-item
-              :values="releaseTask.description"
+              :values="release.description"
               color="deep-purple-accent-3"
               prefield="任务描述:"
             />
           </v-col>
           <v-col>
             <c-view-text-item
-              :values="releaseTask.taskId"
+              :values="release.taskId"
               color="deep-purple-accent-3"
               prefield="任务id:"
             />
@@ -124,7 +124,7 @@
               border
               color="blue-accent-2"
               class="font-weight-bold"
-              @click="openMoreInfo(releaseTask.taskId)"
+              @click="openMoreInfo(release.taskId)"
             >
               <p class="ml-2">更多信息</p>
             </v-sheet>
@@ -159,13 +159,13 @@ import CViewContentList from "@/customization/CViewContentList.vue";
 
 // 父传子
 const props = defineProps<{
-  releaseTask: IuDRelease;
+  release: IuDRelease;
 }>();
 
 const snackbar = ref(false);
 
 // 本地释放任务
-const releaseTask = ref<IuDRelease>();
+const release = ref<IuDRelease>();
 
 // 当前记录的写状态
 let wirteStatus = ref({
@@ -206,9 +206,9 @@ let content: Ref<
 
 // 监听releaseTask的变化
 watch(
-  () => props.releaseTask,
+  () => props.release,
   (newvalue) => {
-    releaseTask.value = newvalue;
+    release.value = newvalue;
     // 初始化
     basicInfos.value = [];
     testEnv.value = [];

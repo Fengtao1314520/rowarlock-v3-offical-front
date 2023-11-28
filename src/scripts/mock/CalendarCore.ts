@@ -1,79 +1,68 @@
-import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
-import { generateRandomDailyTasks } from "@/scripts/mock/MockDailyTask";
 import { taskType } from "@/ctypes/cenum/taskType.ts";
-import { DailyTask } from "@/ctypes/internal/dailyTask.ts";
-
-/**
- * @description: 根据 attributes 获取 DailyTask 数组
- * @deprecated 过期方法
- */
-export function mockAttributes(): any[] {
-  let attributes: any[] = [];
-  // 随机生成 2-6 个任务
-  let taskNum = randomIntFrom3To10();
-  // 生成 DailyTask 数组
-  let allTasks: DailyTask[] = generateRandomDailyTasks(taskNum);
-  // 生成 attributes
-  allTasks.forEach((item) => {
-    let attr = createMockAttribute(item);
-    attributes.push(attr);
-  });
-
-  return attributes;
-}
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 /**
  * @description 创建一个 mock attribute
  */
-export function createMockAttribute(dailTask: DailyTask): any {
+export function createMockAttribute(dailTask: IuDTask): any {
   let dates: any;
   let highlight: any;
   // 给颜色赋值
-  switch (dailTask.taskType) {
-    case taskType.daily:
+  switch (dailTask.Type) {
+    case String(taskType.None):
       highlight = {
-        color: "indigo",
+        color: "gray",
       };
       break;
-    case taskType.longTerm:
-      highlight = {
-        color: "green",
-      };
-      break;
-    case taskType.shortTerm:
-      highlight = {
-        color: "purple",
-      };
-      break;
-    case taskType.temporary:
+    case String(taskType.Daily):
       highlight = {
         color: "blue",
       };
       break;
-    case taskType.other:
+    case String(taskType.Report):
       highlight = {
-        color: "teal",
+        color: "indigo",
+      };
+      break;
+    case String(taskType.JobTest):
+      highlight = {
+        color: "orange",
+      };
+      break;
+    case String(taskType.Job):
+      highlight = {
+        color: "red",
+      };
+      break;
+    case String(taskType.Temp):
+      highlight = {
+        color: "pink",
+      };
+      break;
+    case String(taskType.Release):
+      highlight = {
+        color: "purple",
       };
       break;
     default:
       highlight = {
-        color: "red",
+        color: "green",
         fillMode: "outline",
         contentClass: "italic",
       };
       break;
   }
-
   // 给日期赋值
-  if (dailTask.taskDuration === 1) {
-    dates = dailTask.taskDate;
+  if (dailTask.ExpandTime === 1) {
+    dates = new Date(dailTask.StartTime);
   } else {
-    dates = {
-      start: (dailTask.taskDate as [Date, Date])[0],
-      end: (dailTask.taskDate as [Date, Date])[1],
-    };
+    dates = [
+      {
+        start: new Date(dailTask.StartTime),
+        end: new Date(dailTask.EndTime),
+      },
+    ];
   }
-
   // 返回
   return {
     highlight: highlight,
@@ -83,4 +72,23 @@ export function createMockAttribute(dailTask: DailyTask): any {
       task: dailTask,
     },
   };
+}
+
+/**
+ * @description 计算任务完成百分比
+ * MOCK
+ * @param task IuDTask
+ */
+export function getMockTimeDiffPercentage(task: IuDTask): number {
+  if (task.ElapsedTime <= 0) {
+    // 任务尚未开始
+    return 0;
+  } else if (task.ElapsedTime === task.ExpandTime) {
+    // 任务已经结束
+    return 100;
+  } else {
+    // 计算完成百分比
+    // INFO: 时间差，单位天
+    return Math.round((task.ElapsedTime / task.ExpandTime) * 100); // 百分比，四舍五入保留整数
+  }
 }

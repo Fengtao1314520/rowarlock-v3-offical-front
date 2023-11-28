@@ -1,22 +1,19 @@
 import { IuDUser } from "@/ctypes/internal/IuDUser.ts";
-import { generateRandom199To299 } from "@/scripts/third/smallThird";
+import { createUUID, NowDateTime } from "@/scripts/third/smallThird";
 
 /**
- * @description MockUserInfo
+ * @description 模拟userdetail
  * @constructor
  */
-export function MockUserInfo(): IuDUser {
+export function MockUser(): IuDUser {
   let userInfo: IuDUser = {
-    assignedTask: 0,
-    completedTask: 0,
-    lastLogin: new Date(),
-    uname: "Nate 冯",
-    userRole: "admin",
+    Id: createUUID(),
+    Uemail: "fengtao@mail.com",
+    Ulogintime: NowDateTime(),
+    Uname: "abcdefg",
+    Unickname: "Nate 冯",
+    Upsd: "123456",
   };
-  //随机值
-  let randomNumbers = generateRandom199To299();
-  userInfo.assignedTask = randomNumbers[1];
-  userInfo.completedTask = randomNumbers[0];
 
   return userInfo;
 }
