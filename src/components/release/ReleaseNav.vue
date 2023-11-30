@@ -79,7 +79,7 @@ const emit = defineEmits(["selectSingleReleaseRecord"]);
 const props = defineProps({
   releaseRecord: Array<{ year: number; release: IuDRelease }>,
 });
-const railNav = ref(false);
+const railNav = ref<boolean>(false);
 
 // 本地释放记录
 let localReleaseRecord = props.releaseRecord as Array<{

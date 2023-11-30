@@ -1,10 +1,10 @@
 <template>
-  <v-card flat>
+  <v-card variant="flat">
     <release-nav
       :release-record="releaseRecord"
       @select-single-release-record="selectSingleReleaseRecord"
     />
-    <release-view v-if="releaseTask" :release-task="releaseTask" />
+    <release-view v-if="release" :release="release" />
   </v-card>
 </template>
 
@@ -19,14 +19,13 @@ import ReleaseView from "@/components/release/ReleaseView.vue";
 const releaseRecord: Array<{ year: number; release: IuDRelease }> =
   MockRelease();
 
-let releaseTask = ref({} as IuDRelease);
+let release = ref<IuDRelease>();
 
 function selectSingleReleaseRecord(item: {
   year: number;
-  releaseTask: IuDRelease;
+  release: IuDRelease;
 }) {
   // 赋值
-  releaseTask.value = item.releaseTask;
-  // console.log(data.value.releaseTask);
+  release.value = item.release;
 }
 </script>

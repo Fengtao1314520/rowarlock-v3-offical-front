@@ -1,5 +1,5 @@
 <template>
-  <v-card color="grey-lighten-4" flat class="ma-2">
+  <v-card color="grey-lighten-4" variant="flat" class="ma-2">
     <v-toolbar border density="compact">
       <v-app-bar-nav-icon icon="mdi-record-player" />
       <v-toolbar-title>释放记录</v-toolbar-title>
@@ -13,19 +13,19 @@
         {{ wirteStatus.text }}
       </v-btn>
     </v-toolbar>
-    <v-card color="white" flat>
-      <v-sheet v-if="!release"></v-sheet>
+    <v-card color="white" variant="flat">
+      <v-sheet v-if="!localrelease"></v-sheet>
       <v-form v-else :disabled="!wirteStatus.status">
         <v-row>
           <v-col cols="8">
             <c-view-text-item
-              :values="release.title"
+              :values="localrelease.title"
               color="deep-purple-accent-3"
               prefield="任务名称:"
           /></v-col>
           <v-col>
             <c-view-text-item
-              :values="release.author"
+              :values="localrelease.author"
               color="deep-purple-accent-3"
               prefield="创建人:"
             />
@@ -34,14 +34,14 @@
         <v-row>
           <v-col>
             <c-view-text-item
-              :values="release.description"
+              :values="localrelease.description"
               color="deep-purple-accent-3"
               prefield="任务描述:"
             />
           </v-col>
           <v-col>
             <c-view-text-item
-              :values="release.taskId"
+              :values="localrelease.taskId"
               color="deep-purple-accent-3"
               prefield="任务id:"
             />
@@ -124,7 +124,7 @@
               border
               color="blue-accent-2"
               class="font-weight-bold"
-              @click="openMoreInfo(release.taskId)"
+              @click="openMoreInfo(localrelease.taskId)"
             >
               <p class="ml-2">更多信息</p>
             </v-sheet>
@@ -162,10 +162,11 @@ const props = defineProps<{
   release: IuDRelease;
 }>();
 
+//bar是否打开
 const snackbar = ref(false);
 
 // 本地释放任务
-const release = ref<IuDRelease>();
+const localrelease = ref<IuDRelease>();
 
 // 当前记录的写状态
 let wirteStatus = ref({
@@ -208,7 +209,7 @@ let content: Ref<
 watch(
   () => props.release,
   (newvalue) => {
-    release.value = newvalue;
+    localrelease.value = newvalue;
     // 初始化
     basicInfos.value = [];
     testEnv.value = [];
@@ -242,12 +243,11 @@ watch(
       });
     });
   },
-  { immediate: false, deep: true },
+  { immediate: true, deep: true },
 );
 
 // 当前写状态
 function changeWriteStatus() {
-  console.log(wirteStatus.value.status);
   if (!wirteStatus.value.status) {
     wirteStatus.value = {
       status: !wirteStatus.value.status,
