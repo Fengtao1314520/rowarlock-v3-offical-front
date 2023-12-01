@@ -1,5 +1,6 @@
 import { IuDUser } from "@/ctypes/internal/IuDUser.ts";
-import { createUUID, NowDateTime } from "@/scripts/third/smallThird";
+
+import { createUUID, NowDateTime } from "@/scripts/third/commonFunc.ts";
 
 /**
  * @description 模拟userdetail

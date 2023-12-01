@@ -1,12 +1,12 @@
 import { taskStatus, taskType } from "@/ctypes/cenum/taskType.ts";
+import { getRandomDateRange } from "@/scripts/third/smallThird";
+import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 import {
   createUUID,
-  getRandomDateRange,
   getRandomInRange,
   NowDateTime,
   randomBoolean,
-} from "@/scripts/third/smallThird";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+} from "@/scripts/third/commonFunc.ts";
 
 /**
  * @description 随机生成一个日常任务

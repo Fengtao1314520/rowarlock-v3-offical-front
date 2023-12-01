@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { createMockAttribute } from "@/scripts/mock/CalendarCore";
+import { createMockAttribute } from "@/scripts/mock/pages/CalendarCore.ts";
 import CalendarView from "@/components/calendar/CalendarView.vue";
 import CalendarList from "@/components/calendar/CalendarList.vue";
 import { IuDTask } from "@/ctypes/internal/IuDTask.ts";

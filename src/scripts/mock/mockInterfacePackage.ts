@@ -1,7 +1,7 @@
-import { createUUID, getRandomInRange } from "@/scripts/third/smallThird";
 import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
 import { mockInterfaceObjs } from "@/scripts/mock/MockInterface";
 import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
+import { createUUID, getRandomInRange } from "@/scripts/third/commonFunc.ts";
 
 /**
  * 接口包列表，返回接口包列表

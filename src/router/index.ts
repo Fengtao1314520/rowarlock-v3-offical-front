@@ -15,14 +15,6 @@ const routes = [
         component: () => import("@/views/Home.vue"),
       },
       {
-        path: "/author",
-        name: "Author",
-        meta: {
-          layout: "blank",
-        },
-        component: () => import("@/components/author/Author.vue"),
-      },
-      {
         path: "/main",
         name: "Main",
         meta: {

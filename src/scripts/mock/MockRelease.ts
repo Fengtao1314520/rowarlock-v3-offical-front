@@ -1,9 +1,6 @@
 import {
-  createUUID,
   getRandomDateInThisMonth,
-  getRandomInRange,
   getYearsAndBefore3,
-  randomBoolean,
   randomIntFrom3To10,
 } from "@/scripts/third/smallThird";
 import {
@@ -13,6 +10,11 @@ import {
   ReleaseContent,
   ReleaseType,
 } from "@/ctypes/internal/IuDRelease.ts";
+import {
+  createUUID,
+  getRandomInRange,
+  randomBoolean,
+} from "@/scripts/third/commonFunc.ts";
 
 /**
  * @description 创建随机的Release记录

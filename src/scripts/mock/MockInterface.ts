@@ -1,9 +1,4 @@
 import {
-  createUUID,
-  generateRandomJSON,
-  getRandomInRange,
-} from "@/scripts/third/smallThird";
-import {
   Body,
   Cookie,
   FormBody,
@@ -15,6 +10,11 @@ import {
   Param,
 } from "@/ctypes/internal/IuDInterface.ts";
 import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
+import {
+  createUUID,
+  generateRandomJSON,
+  getRandomInRange,
+} from "@/scripts/third/commonFunc.ts";
 
 /**
  * 查询接口数量，返回总数和已完成数和调试的数量

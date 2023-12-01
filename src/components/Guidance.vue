@@ -76,6 +76,18 @@
             </v-list-item>
           </v-list>
         </v-card>
+        <v-alert
+          icon="mdi-link-box-outline"
+          title="Author Resume"
+          color="indigo-accent-4"
+          variant="tonal"
+        >
+          <a
+            href="https://fengtao1314520.github.io/author-nf-resume/"
+            class="text-decoration-none"
+            >the resume for author, mabye he need a new job</a
+          >
+        </v-alert>
       </v-col>
     </v-row>
   </v-card>
@@ -106,12 +118,6 @@ const guidancedata = reactive({
       desc: "Main page for RoWarlock",
       icon: "mdi-home",
       link: "/main",
-    },
-    {
-      title: "Author",
-      desc: "Author for self's zone",
-      icon: "mdi-account-convert",
-      link: "/author",
     },
   ],
 });

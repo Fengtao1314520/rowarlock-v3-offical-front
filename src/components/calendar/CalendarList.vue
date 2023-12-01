@@ -48,7 +48,7 @@ import {
   mockGroupAddExtra,
   mockGroupTaskByType,
   mockTransTitleZH,
-} from "@/scripts/mock/CalendarList";
+} from "@/scripts/mock/pages/CalendarList.ts";
 import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 
 // 任务列表
