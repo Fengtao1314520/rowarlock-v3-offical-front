@@ -1,5 +1,5 @@
-import { taskType } from "@/ctypes/cenum/taskType.ts";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { TaskType } from "@/scripts/cTypes/cEnum/TaskType.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 
 /**
  * @description 创建一个 mock attribute
@@ -9,37 +9,37 @@ export function createMockAttribute(dailTask: IuDTask): any {
   let highlight: any;
   // 给颜色赋值
   switch (dailTask.Type) {
-    case String(taskType.None):
+    case String(TaskType.None):
       highlight = {
         color: "gray",
       };
       break;
-    case String(taskType.Daily):
+    case String(TaskType.Daily):
       highlight = {
         color: "blue",
       };
       break;
-    case String(taskType.Report):
+    case String(TaskType.Report):
       highlight = {
         color: "indigo",
       };
       break;
-    case String(taskType.JobTest):
+    case String(TaskType.JobTest):
       highlight = {
         color: "orange",
       };
       break;
-    case String(taskType.Job):
+    case String(TaskType.Job):
       highlight = {
         color: "red",
       };
       break;
-    case String(taskType.Temp):
+    case String(TaskType.Temp):
       highlight = {
         color: "pink",
       };
       break;
-    case String(taskType.Release):
+    case String(TaskType.Release):
       highlight = {
         color: "purple",
       };

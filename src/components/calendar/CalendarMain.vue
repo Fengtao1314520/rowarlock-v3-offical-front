@@ -7,7 +7,7 @@
 </template>
 <script lang="ts" setup>
 import CalendarCore from "@/components/calendar/CalendarCore.vue";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 import { ref } from "vue";
 
 // 当前时间

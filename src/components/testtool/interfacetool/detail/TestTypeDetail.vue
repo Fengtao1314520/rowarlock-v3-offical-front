@@ -65,8 +65,8 @@
 </template>
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import { mockInterfaceInfos } from "@/scripts/mock/MockInterface.ts";
-import TestTypeDataView from "@/components/testtool/interfacetool/detail/TestTypeDataView.vue";
+import { mockInterfaceInfos } from "@/scripts/mock/mockInterface.ts";
+import TestTypeDataView from "@/components/testTool/interfaceTool/detail/TestTypeDataView.vue";
 import { mockWebInterfacePackages } from "@/scripts/mock/mockInterfacePackage.ts";
 import CViewTextNoneSheet from "@/customization/CViewTextNoneSheet.vue";
 import { useWorkingOneTestToolStore } from "@/stores/OneTestToolStore.ts";

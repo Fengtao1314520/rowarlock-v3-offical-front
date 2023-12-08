@@ -1,4 +1,4 @@
-import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum.ts";
+import { BodyMode, HeadKey, Method } from "@/scripts/cTypes/cEnum/CEnum.ts";
 
 /**
  * url信息
@@ -17,7 +17,7 @@ export interface HUrl {
  */
 export interface HRequest {
   // POST GET等
-  method: METHOD | string;
+  method: Method | string;
   // request header,CONTENTTYEP之类
   header: Array<Header>;
   // 发送内容
@@ -49,7 +49,7 @@ export interface HResponse {
  */
 export interface Header {
   selected: boolean; // 适配前台，是否被选择
-  key: HEADERKEY | string;
+  key: HeadKey | string;
   value: string;
   description: string;
 }
@@ -59,7 +59,7 @@ export interface Header {
  * notice:与postman不兼容，重写
  */
 export interface Body {
-  mode: BODYMODE | string;
+  mode: BodyMode | string;
   // 格式化的form 发送请求 body
   formbody: Array<FormBody>;
   // RAW 发送请求 body

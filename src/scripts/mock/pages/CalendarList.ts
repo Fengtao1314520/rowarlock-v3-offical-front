@@ -1,5 +1,6 @@
-import { taskStatus, taskType } from "@/ctypes/cenum/taskType.ts";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { TaskType } from "@/scripts/cTypes/cEnum/TaskType.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
+import { TaskStatus } from "@/scripts/cTypes/cEnum/TaskStatus.ts";
 
 /**
  * @description: 根据 DailyTask 数组，按照taskType 分组
@@ -8,7 +9,7 @@ import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
 export function mockGroupTaskByType(dailyTasks: IuDTask[]) {
   return dailyTasks.reduce(
     (groups, item) => {
-      const key = item.Type; // 以 taskType 作为分组依据
+      const key = item.Type; // 以 TaskType 作为分组依据
       if (!groups[key]) {
         groups[key] = {
           name: key,
@@ -55,50 +56,50 @@ export function mockGroupAddExtra(
  * @description: 根据 taskStatus 获取对应的 icon
  * @param tStatus taskStatus
  */
-export function mockTaskResultIcon(tStatus: taskStatus): string {
+export function mockTaskResultIcon(tStatus: TaskStatus): string {
   let icon = "";
 
-  switch (tStatus as taskStatus) {
-    case taskStatus.Active:
+  switch (tStatus as TaskStatus) {
+    case TaskStatus.Active:
       icon = "mdi-airplane";
       break;
-    case taskStatus.Completed:
+    case TaskStatus.Completed:
       icon = "mdi-timer-sand-complete";
       break;
-    case taskStatus.Running:
+    case TaskStatus.Running:
       icon = "mdi-run-fast";
       break;
-    case taskStatus.Canceled:
+    case TaskStatus.Canceled:
       icon = "mdi-cancel";
       break;
-    case taskStatus.Failed:
+    case TaskStatus.Failed:
       icon = "mdi-clock-remove";
       break;
-    case taskStatus.Paused:
+    case TaskStatus.Paused:
       icon = "mdi-timer-sand-paused";
       break;
-    case taskStatus.Scheduled:
+    case TaskStatus.Scheduled:
       icon = "mdi-airplane-clock";
       break;
-    case taskStatus.Waiting:
+    case TaskStatus.Waiting:
       icon = "md-clock-digital";
       break;
-    case taskStatus.WaitingForActivation:
+    case TaskStatus.WaitingForActivation:
       icon = "mdi-fan-plus";
       break;
-    case taskStatus.WaitingForChildren:
+    case TaskStatus.WaitingForChildren:
       icon = "mdi-fan-speed-3";
       break;
-    case taskStatus.WaitingToRun:
+    case TaskStatus.WaitingToRun:
       icon = "mdi-fan-clock";
       break;
-    case taskStatus.Blocked:
+    case TaskStatus.Blocked:
       icon = "mdi-code-block-tags";
       break;
-    case taskStatus.BlockedByParent:
+    case TaskStatus.BlockedByParent:
       icon = "md-code-block-braces";
       break;
-    case taskStatus.Suspended:
+    case TaskStatus.Suspended:
       icon = "mdi-candy-outline";
       break;
   }
@@ -107,31 +108,31 @@ export function mockTaskResultIcon(tStatus: taskStatus): string {
 }
 
 /**
- * @description: 根据 taskType 获取对应的 title ZH
- * @param title taskType
+ * @description: 根据 TaskType 获取对应的 title ZH
+ * @param title TaskType
  */
 export function mockTransTitleZH(title: string): string {
   let result = "";
   switch (title) {
-    case String(taskType.None):
+    case String(TaskType.None):
       result = "普通任务";
       break;
-    case String(taskType.Daily):
+    case String(TaskType.Daily):
       result = "日常任务";
       break;
-    case String(taskType.Report):
+    case String(TaskType.Report):
       result = "报告任务";
       break;
-    case String(taskType.JobTest):
+    case String(TaskType.JobTest):
       result = "测试任务";
       break;
-    case String(taskType.Job):
+    case String(TaskType.Job):
       result = "工作任务";
       break;
-    case String(taskType.Temp):
+    case String(TaskType.Temp):
       result = "临时任务";
       break;
-    case String(taskType.Release):
+    case String(TaskType.Release):
       result = "释放任务";
       break;
   }
@@ -139,32 +140,32 @@ export function mockTransTitleZH(title: string): string {
 }
 
 /**
- * @description: 根据 taskType 获取对应的 color
+ * @description: 根据 TaskType 获取对应的 color
  * @param tTypename taskType的名字
  */
 export function mockTaskTypeColor(tTypename: string): string {
   let color = "";
 
   switch (tTypename) {
-    case String(taskType.None):
+    case String(TaskType.None):
       color = "grey-lighten-1";
       break;
-    case String(taskType.Daily):
+    case String(TaskType.Daily):
       color = "blue-accent-4";
       break;
-    case String(taskType.Report):
+    case String(TaskType.Report):
       color = "indigo-accent-4";
       break;
-    case String(taskType.JobTest):
+    case String(TaskType.JobTest):
       color = "orange-darken-4";
       break;
-    case String(taskType.Job):
+    case String(TaskType.Job):
       color = "green-accent-4";
       break;
-    case String(taskType.Temp):
+    case String(TaskType.Temp):
       color = "pink-lighten-1";
       break;
-    case String(taskType.Release):
+    case String(TaskType.Release):
       color = "deep-purple-accent-4";
       break;
   }
@@ -173,31 +174,31 @@ export function mockTaskTypeColor(tTypename: string): string {
 }
 
 /**
- * @description: 根据 taskType 获取对应的 color
+ * @description: 根据 TaskType 获取对应的 color
  * @param tTypename taskType名字
  */
 export function mockTaskTypeIcon(tTypename: string): string {
   let icon = "";
   switch (tTypename) {
-    case String(taskType.None):
+    case String(TaskType.None):
       icon = 'fa:fas fa-spinner"';
       break;
-    case String(taskType.Daily):
+    case String(TaskType.Daily):
       icon = "fa:fas fa-hippo";
       break;
-    case String(taskType.Report):
+    case String(TaskType.Report):
       icon = "fa:fas fa-hotel";
       break;
-    case String(taskType.JobTest):
+    case String(TaskType.JobTest):
       icon = "fa:fas fa-user-doctor";
       break;
-    case String(taskType.Job):
+    case String(TaskType.Job):
       icon = "fa:fas fa-vial-virus";
       break;
-    case String(taskType.Temp):
+    case String(TaskType.Temp):
       icon = "fa:fas fa-campground";
       break;
-    case String(taskType.Release):
+    case String(TaskType.Release):
       icon = "fa:fas fa-kaaba";
       break;
   }

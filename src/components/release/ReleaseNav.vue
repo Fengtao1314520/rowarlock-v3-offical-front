@@ -71,8 +71,8 @@
 </template>
 
 <script setup lang="ts">
-import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
-import { mockGroupReleaseTask } from "@/scripts/mock/MockRelease.ts";
+import { IuDRelease } from "@/scripts/cTypes/internal/IuDRelease.ts";
+import { mockGroupReleaseTask } from "@/scripts/mock/mockRelease.ts";
 import { ref } from "vue";
 
 const emit = defineEmits(["selectSingleReleaseRecord"]);

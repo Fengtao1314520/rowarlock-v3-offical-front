@@ -1,12 +1,13 @@
-import { taskStatus, taskType } from "@/ctypes/cenum/taskType.ts";
+import { TaskType } from "@/scripts/cTypes/cEnum/TaskType.ts";
 import { getRandomDateRange } from "@/scripts/third/smallThird";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 import {
   createUUID,
   getRandomInRange,
-  NowDateTime,
+  nowDateTime,
   randomBoolean,
 } from "@/scripts/third/commonFunc.ts";
+import { TaskStatus } from "@/scripts/cTypes/cEnum/TaskStatus.ts";
 
 /**
  * @description 随机生成一个日常任务
@@ -47,15 +48,15 @@ export function generateRandomDailyTasks(count: number): IuDTask[] {
     if (issingle) {
       // 一天完成的任务
       let randomDate = getRandomDateRange(expandTime);
-      startdt = NowDateTime(randomDate[0]);
-      enddt = NowDateTime(randomDate[1]);
+      startdt = nowDateTime(randomDate[0]);
+      enddt = nowDateTime(randomDate[1]);
     } else {
       // 多日任务
       expandTime = getRandomInRange(3, 6);
       elapsedTime = getRandomInRange(1, expandTime - 1);
       let randomDate = getRandomDateRange(elapsedTime);
-      startdt = NowDateTime(randomDate[0]);
-      enddt = NowDateTime(randomDate[1]);
+      startdt = nowDateTime(randomDate[0]);
+      enddt = nowDateTime(randomDate[1]);
     }
 
     // 创建new task
@@ -70,11 +71,11 @@ export function generateRandomDailyTasks(count: number): IuDTask[] {
       TaskContent: taskDescriptions[randomIndex],
       TaskName: taskNames[randomIndex],
       Status:
-        Object.keys(taskStatus)[
-          Math.floor(Math.random() * (Object.keys(taskStatus).length - 1) + 1)
+        Object.keys(TaskStatus)[
+          Math.floor(Math.random() * (Object.keys(TaskStatus).length - 1) + 1)
         ],
-      Type: Object.keys(taskType)[
-        Math.floor(Math.random() * (Object.keys(taskType).length - 1) + 1)
+      Type: Object.keys(TaskType)[
+        Math.floor(Math.random() * (Object.keys(TaskType).length - 1) + 1)
       ],
     };
     tasks.push(newTask);

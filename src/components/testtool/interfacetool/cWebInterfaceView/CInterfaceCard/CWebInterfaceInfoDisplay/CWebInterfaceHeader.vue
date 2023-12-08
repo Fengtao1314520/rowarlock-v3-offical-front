@@ -50,19 +50,20 @@
 </template>
 
 <script setup lang="ts">
-import { HUrl } from "@/ctypes/internal/IuDInterface.ts";
+import { HUrl } from "@/scripts/cTypes/internal/IuDInterface.ts";
 import { computed, ref, watch } from "vue";
-import { METHOD } from "@/ctypes/cenum/cenum.ts";
-import { EnumToArray } from "@/scripts/third/enumToArray.ts";
+import { Method } from "@/scripts/cTypes/cEnum/CEnum.ts";
+
+import { enumToArray } from "@/scripts/third/commonFunc.ts";
 
 // 方法枚举列表
-const methodArray = EnumToArray(METHOD);
+const methodArray = enumToArray(Method);
 
 // Props
 const props = withDefaults(
   defineProps<{
     header: HUrl;
-    method: METHOD | string;
+    method: Method | string;
   }>(),
   {},
 );
@@ -70,7 +71,7 @@ const props = withDefaults(
 // 本地Header Url
 const localHeader = ref<HUrl>();
 // 本地Header Method
-const localMethod = ref<METHOD | string>();
+const localMethod = ref<Method | string>();
 
 // 监听props.header的变化
 watch(

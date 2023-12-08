@@ -1,6 +1,6 @@
-import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
-import { mockInterfaceObjs } from "@/scripts/mock/MockInterface";
-import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
+import { IuDInterface } from "@/scripts/cTypes/internal/IuDInterface.ts";
+import { mockInterfaceObjs } from "@/scripts/mock/mockInterface.ts";
+import { IuDInterfacePackage } from "@/scripts/cTypes/internal/IuDInterfacePackage.ts";
 import { createUUID, getRandomInRange } from "@/scripts/third/commonFunc.ts";
 
 /**

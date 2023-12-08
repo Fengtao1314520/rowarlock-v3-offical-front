@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { createMockAttribute } from "@/scripts/mock/pages/CalendarCore.ts";
+import { createMockAttribute } from "@/scripts/mock/pages/calendarCore.ts";
 import CalendarView from "@/components/calendar/CalendarView.vue";
 import CalendarList from "@/components/calendar/CalendarList.vue";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 
 // 任务列表
 const props = defineProps({

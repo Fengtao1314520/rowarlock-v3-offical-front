@@ -1,4 +1,4 @@
-import { CuDLocalVariable } from "@/ctypes/communicate/CuDLocalVariable.ts";
+import { CuDLocalVariable } from "@/scripts/cTypes/communicate/CuDLocalVariable.ts";
 
 /**
  * @interface PackageLocalVariables

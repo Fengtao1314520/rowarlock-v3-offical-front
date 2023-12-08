@@ -1,20 +1,18 @@
-import { IuDUser } from "@/ctypes/internal/IuDUser.ts";
+import { IuDUser } from "@/scripts/cTypes/internal/IuDUser.ts";
 
-import { createUUID, NowDateTime } from "@/scripts/third/commonFunc.ts";
+import { createUUID, nowDateTime } from "@/scripts/third/commonFunc.ts";
 
 /**
  * @description 模拟userdetail
  * @constructor
  */
-export function MockUser(): IuDUser {
-  let userInfo: IuDUser = {
+export function mockUser(): IuDUser {
+  return {
     Id: createUUID(),
     Uemail: "fengtao@mail.com",
-    Ulogintime: NowDateTime(),
+    Ulogintime: nowDateTime(),
     Uname: "abcdefg",
     Unickname: "Nate 冯",
     Upsd: "123456",
   };
-
-  return userInfo;
 }

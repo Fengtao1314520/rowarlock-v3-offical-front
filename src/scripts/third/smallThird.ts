@@ -43,3 +43,12 @@ export function getYearsAndBefore3(): number[] {
   }
   return years;
 }
+
+export function capitalizeFirstLetter(jsonObject: any) {
+  return JSON.stringify(jsonObject).replace(
+    /"([^"]*)":/g,
+    function (match, key) {
+      return '"' + key.charAt(0).toUpperCase() + key.slice(1) + ":";
+    },
+  );
+}

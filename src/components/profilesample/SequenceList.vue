@@ -142,10 +142,10 @@ import {
   mockTaskTypeColor,
   mockTaskTypeIcon,
   mockTransTitleZH,
-} from "@/scripts/mock/pages/CalendarList.ts";
+} from "@/scripts/mock/pages/calendarList.ts";
 import { ref } from "vue";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
-import { getMockTimeDiffPercentage } from "@/scripts/mock/pages/CalendarCore.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
+import { getMockTimeDiffPercentage } from "@/scripts/mock/pages/calendarCore.ts";
 
 /**
  * @description PROPS

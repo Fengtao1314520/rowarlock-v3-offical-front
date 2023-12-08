@@ -31,9 +31,9 @@
 import { ref } from "vue";
 import CalendarMain from "@/components/calendar/CalendarMain.vue";
 import { randomIntFrom3To10 } from "@/scripts/third/smallThird";
-import ProfileSample from "@/components/profilesample/ProfileSampleMain.vue";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
-import { generateRandomDailyTasks } from "@/scripts/mock/MockTask.ts";
+import ProfileSample from "@/components/profileSample/ProfileSampleMain.vue";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
+import { generateRandomDailyTasks } from "@/scripts/mock/mockTask.ts";
 
 // 参数
 const railNav = ref(true);

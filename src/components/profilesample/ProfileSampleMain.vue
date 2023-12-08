@@ -8,9 +8,9 @@
 <script lang="ts" setup>
 // 任务列表
 
-import HelloAlert from "@/components/profilesample/HelloAlert.vue";
-import SequenceList from "@/components/profilesample/SequenceList.vue";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import HelloAlert from "@/components/profileSample/HelloAlert.vue";
+import SequenceList from "@/components/profileSample/SequenceList.vue";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 
 const props = defineProps({
   // task

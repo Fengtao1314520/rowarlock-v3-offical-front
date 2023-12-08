@@ -36,7 +36,7 @@ const routes = [
         meta: {
           layout: "layout",
         },
-        component: () => import("@/components/testtool/TestToolMain.vue"),
+        component: () => import("@/components/testTool/TestToolMain.vue"),
       },
       {
         path: "/test/interface",
@@ -49,7 +49,7 @@ const routes = [
             },
             component: () =>
               import(
-                "@/components/testtool/interfacetool/WebInterfaceMain.vue"
+                "@/components/testTool/interfaceTool/WebInterfaceMain.vue"
               ),
           },
         ],

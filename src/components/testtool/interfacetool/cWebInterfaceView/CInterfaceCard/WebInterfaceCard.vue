@@ -30,9 +30,9 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import CWebInterfaceCardTitle from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardTitle.vue";
-import CWebInterfaceCardContent from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardContent.vue";
-import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
+import CWebInterfaceCardTitle from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardTitle.vue";
+import CWebInterfaceCardContent from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceCardContent.vue";
+import { IuDInterface } from "@/scripts/cTypes/internal/IuDInterface.ts";
 
 const selectedWebInterface = ref<IuDInterface>();
 const openedwebInterfaceArray = ref<IuDInterface[]>();

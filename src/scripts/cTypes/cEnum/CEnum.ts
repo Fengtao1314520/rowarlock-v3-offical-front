@@ -2,7 +2,7 @@
  * HTTP 方法
  * METHOD
  */
-export enum METHOD {
+export enum Method {
   POST = "POST",
   GET = "GET",
   PUT = "PUT",
@@ -12,7 +12,7 @@ export enum METHOD {
 /**
  * header头
  */
-export enum HEADERKEY {
+export enum HeadKey {
   ACCPET = "Accept",
   ACCEPTENCODING = "Accept-Encoding",
   ACCEPTLANGUAGE = "Accept-Language",
@@ -26,7 +26,7 @@ export enum HEADERKEY {
 /**
  * BODY的字段格式
  */
-export enum BODYMODE {
+export enum BodyMode {
   FORMDATA = "formdata",
   URLENCODED = "urlencoded",
   JSON = "JSON",

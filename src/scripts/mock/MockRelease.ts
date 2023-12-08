@@ -9,7 +9,7 @@ import {
   IuDRelease,
   ReleaseContent,
   ReleaseType,
-} from "@/ctypes/internal/IuDRelease.ts";
+} from "@/scripts/cTypes/internal/IuDRelease.ts";
 import {
   createUUID,
   getRandomInRange,
@@ -20,7 +20,7 @@ import {
  * @description 创建随机的Release记录
  * @constructor
  */
-export function MockRelease() {
+export function mockRelease() {
   //随机数
   let numbers = randomIntFrom3To10();
   //年份

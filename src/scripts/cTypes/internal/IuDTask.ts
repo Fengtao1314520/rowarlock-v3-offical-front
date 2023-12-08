@@ -1,4 +1,4 @@
-import { CuDTask } from "@/ctypes/communicate/CuDTask.ts";
+import { CuDTask } from "@/scripts/cTypes/communicate/CuDTask.ts";
 
 /**
  * @description: 任务信息

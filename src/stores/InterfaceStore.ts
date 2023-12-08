@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { IuDInterfacePackage } from "@/ctypes/internal/IuDInterfacePackage.ts";
+import { IuDInterfacePackage } from "@/scripts/cTypes/internal/IuDInterfacePackage.ts";
 
 /**
  * @description: 工作中接口包

@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import { Calendar } from "v-calendar";
 import "v-calendar/style.css";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 
 const props = defineProps({
   date: Date,

@@ -48,8 +48,8 @@ import {
   mockGroupAddExtra,
   mockGroupTaskByType,
   mockTransTitleZH,
-} from "@/scripts/mock/pages/CalendarList.ts";
-import { IuDTask } from "@/ctypes/internal/IuDTask.ts";
+} from "@/scripts/mock/pages/calendarList.ts";
+import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 
 // 任务列表
 const props = defineProps({

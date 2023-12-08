@@ -8,8 +8,8 @@ import {
   HUrl,
   IuDInterface,
   Param,
-} from "@/ctypes/internal/IuDInterface.ts";
-import { BODYMODE, HEADERKEY, METHOD } from "@/ctypes/cenum/cenum";
+} from "@/scripts/cTypes/internal/IuDInterface.ts";
+import { BodyMode, HeadKey, Method } from "@/scripts/cTypes/cEnum/CEnum.ts";
 import {
   createUUID,
   generateRandomJSON,
@@ -118,7 +118,7 @@ function generateParams(): Param[] {
  * @returns 生成的 HRequest 对象
  */
 function generateHRequest(): HRequest {
-  const method = Math.random() < 0.5 ? METHOD.POST : METHOD.GET;
+  const method = Math.random() < 0.5 ? Method.POST : Method.GET;
   const header: Header[] = generateHeaders();
   const body = generateBody();
 
@@ -140,7 +140,7 @@ function generateHeaders(): Header[] {
 
   for (let i = 0; i < count; i++) {
     const selected = Math.random() < 0.5;
-    const key = HEADERKEY.CONTENTTYPE;
+    const key = HeadKey.CONTENTTYPE;
     const value = `value${i}`;
     const description = `description${i}`;
 
@@ -162,7 +162,7 @@ function generateHeaders(): Header[] {
  * @returns 生成的 Body 对象
  */
 function generateBody(): Body {
-  const mode = BODYMODE.FORMDATA;
+  const mode = BodyMode.FORMDATA;
   const formbody: FormBody[] = generateFormBodies();
   const raw = "raw body";
 
@@ -226,6 +226,9 @@ function generateHResponse(): HResponse {
   };
 }
 
+/**
+ * 生成随机的 Cookie 数组
+ */
 function generateCookies(): Cookie[] {
   const count = Math.floor(Math.random() * 6) + 1;
   const cookies: Cookie[] = [];

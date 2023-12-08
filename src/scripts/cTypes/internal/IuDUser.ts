@@ -1,4 +1,4 @@
-import { CuDUserDetails } from "@/ctypes/communicate/CuDUserDetails.ts";
+import { CuDUserDetails } from "@/scripts/cTypes/communicate/CuDUserDetails.ts";
 
 /**
  * @description: 用户信息

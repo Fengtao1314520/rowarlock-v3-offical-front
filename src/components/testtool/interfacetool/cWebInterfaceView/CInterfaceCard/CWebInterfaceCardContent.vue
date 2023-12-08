@@ -43,12 +43,12 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import CWebInterfaceHeader from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceHeader.vue";
-import CWebIterfaceResponse from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebIterfaceResponse.vue";
-import CWebInterfaceParams from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceParams.vue";
-import CWebInterfaceRequestHeaders from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestHeaders.vue";
-import CWebInterfaceRequestBody from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestBody.vue";
-import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts";
+import CWebInterfaceHeader from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceHeader.vue";
+import CWebIterfaceResponse from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebIterfaceResponse.vue";
+import CWebInterfaceParams from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceParams.vue";
+import CWebInterfaceRequestHeaders from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestHeaders.vue";
+import CWebInterfaceRequestBody from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/CWebInterfaceInfoDisplay/CWebInterfaceRequestBody.vue";
+import { IuDInterface } from "@/scripts/cTypes/internal/IuDInterface.ts";
 
 const props = withDefaults(
   defineProps<{

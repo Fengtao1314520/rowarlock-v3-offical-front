@@ -1,20 +1,7 @@
 /**
- * IuDTask Type
- */
-export enum taskType {
-  None = "None",
-  Job = "Job",
-  Temp = "Temp",
-  Release = "Release",
-  Daily = "Daily",
-  Report = "Report",
-  JobTest = "JobTest",
-}
-
-/**
  * IuDTask 状态
  */
-export enum taskStatus {
+export enum TaskStatus {
   Active = "Active",
   Completed = "Completed",
   Canceled = "Canceled",

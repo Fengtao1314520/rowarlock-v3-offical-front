@@ -48,7 +48,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import TestTypeDetail from "@/components/testtool/interfacetool/detail/TestTypeDetail.vue";
+import TestTypeDetail from "@/components/testTool/interfaceTool/detail/TestTypeDetail.vue";
 
 // panel的默认打开值
 const panel = ref([0, 1]);

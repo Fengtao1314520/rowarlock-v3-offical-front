@@ -68,8 +68,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useWorkingOneTestToolStore } from "@/stores/OneTestToolStore.ts";
-import WebInterfaceCard from "@/components/testtool/interfacetool/cWebInterfaceView/CInterfaceCard/WebInterfaceCard.vue";
-import { IuDInterface } from "@/ctypes/internal/IuDInterface.ts"; // webinterface的包列表
+import WebInterfaceCard from "@/components/testTool/interfaceTool/cWebInterfaceView/CInterfaceCard/WebInterfaceCard.vue";
+import { IuDInterface } from "@/scripts/cTypes/internal/IuDInterface.ts"; // webinterface的包列表
 
 const drawer = ref(true);
 

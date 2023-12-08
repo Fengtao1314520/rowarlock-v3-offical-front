@@ -10,14 +10,14 @@
 
 <script setup lang="ts">
 import ReleaseNav from "@/components/release/ReleaseNav.vue";
-import { MockRelease } from "@/scripts/mock/MockRelease.ts";
-import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
+import { mockRelease } from "@/scripts/mock/mockRelease.ts";
+import { IuDRelease } from "@/scripts/cTypes/internal/IuDRelease.ts";
 import { ref } from "vue";
 import ReleaseView from "@/components/release/ReleaseView.vue";
 
 /// 释放记录
 const releaseRecord: Array<{ year: number; release: IuDRelease }> =
-  MockRelease();
+  mockRelease();
 
 let release = ref<IuDRelease>();
 

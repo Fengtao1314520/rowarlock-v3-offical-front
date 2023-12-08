@@ -1,4 +1,4 @@
-import { PackageLocalVariables } from "@/ctypes/internal/interfaceLocalVariables.ts";
+import { PackageLocalVariables } from "@/scripts/cTypes/internal/interfaceLocalVariables.ts";
 
 /**
  * @description: 接口包信息

@@ -118,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import { HResponse } from "@/ctypes/internal/IuDInterface.ts";
+import { HResponse } from "@/scripts/cTypes/internal/IuDInterface.ts";
 import { computed, ref, watch } from "vue";
 import VueJsonPretty from "vue-json-pretty";
 import "vue-json-pretty/lib/styles.css";

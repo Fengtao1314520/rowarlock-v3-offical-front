@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { HRequest } from "@/ctypes/internal/IuDInterface.ts";
+import { HRequest } from "@/scripts/cTypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
 
 // props

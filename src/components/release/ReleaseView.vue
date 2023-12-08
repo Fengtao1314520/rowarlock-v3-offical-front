@@ -147,14 +147,14 @@
 
 <script lang="ts" setup>
 import { Ref, ref, watch } from "vue";
-import { IuDRelease } from "@/ctypes/internal/IuDRelease.ts";
+import { IuDRelease } from "@/scripts/cTypes/internal/IuDRelease.ts";
 import CViewTextItem from "@/customization/CViewTextItem.vue";
 import CViewTextItemList from "@/customization/CViewTextItemList.vue";
 import {
   l18i_content,
   l18i_relatedConfig,
   l18i_release,
-} from "@/l18i/l18i_release";
+} from "@/scripts/l18i/l18i_release";
 import CViewContentList from "@/customization/CViewContentList.vue";
 
 // 父传子

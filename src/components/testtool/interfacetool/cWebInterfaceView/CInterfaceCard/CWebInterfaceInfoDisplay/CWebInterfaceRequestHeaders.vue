@@ -54,13 +54,14 @@
 </template>
 
 <script setup lang="ts">
-import { HRequest } from "@/ctypes/internal/IuDInterface.ts";
+import { HRequest } from "@/scripts/cTypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
-import { HEADERKEY } from "@/ctypes/cenum/cenum.ts";
-import { EnumToArray } from "@/scripts/third/enumToArray.ts"; // 方法枚举列表
+import { HeadKey } from "@/scripts/cTypes/cEnum/CEnum.ts";
+
+import { enumToArray } from "@/scripts/third/commonFunc.ts"; // 方法枚举列表
 
 // 方法枚举列表
-const headerArray = EnumToArray(HEADERKEY);
+const headerArray = enumToArray(HeadKey);
 
 // props
 const props = withDefaults(

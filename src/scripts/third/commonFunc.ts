@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
  * @description: 获取当前日期
  * @constructor
  */
-export function NowDateTime(predate?: Date): string {
+export function nowDateTime(predate?: Date): string {
   let date: Date;
 
   if (predate !== undefined && predate !== null) {
@@ -78,4 +78,16 @@ export function generateRandomJSON(depth: number): any {
     }
     return jsonObject;
   }
+}
+
+/**
+ * 枚举值变为数组
+ * @param {*} emun 枚举对象
+ */
+export function enumToArray(emun: any) {
+  const all = [];
+  for (const key in emun) {
+    all.push(emun[key]);
+  }
+  return all;
 }

@@ -56,14 +56,14 @@
 </template>
 
 <script setup lang="ts">
-import { HUrl } from "@/ctypes/internal/IuDInterface.ts";
+import { HUrl } from "@/scripts/cTypes/internal/IuDInterface.ts";
 import { ref, watch } from "vue";
-import { METHOD } from "@/ctypes/cenum/cenum.ts";
-import { EnumToArray } from "@/scripts/third/enumToArray.ts";
+import { Method } from "@/scripts/cTypes/cEnum/CEnum.ts";
 import { send } from "vite";
+import { enumToArray } from "@/scripts/third/commonFunc.ts";
 
 // 方法枚举列表
-const methodArray = EnumToArray(METHOD);
+const methodArray = enumToArray(Method);
 
 // Props
 const props = withDefaults(
