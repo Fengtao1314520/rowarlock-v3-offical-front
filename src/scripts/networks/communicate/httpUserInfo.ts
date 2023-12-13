@@ -14,4 +14,14 @@ export class HttpUserInfo {
     };
     return await Http.get(ApiUrl.USERINFO.value, data);
   }
+
+  /**
+   * @description 更新用户信息
+   * @param userid
+   * @param data
+   * @constructor
+   */
+  static async PutUserInfo(userid: string, data: any): Promise<ServerReqType> {
+    return await Http.put(ApiUrl.USERINFO.value, data);
+  }
 }

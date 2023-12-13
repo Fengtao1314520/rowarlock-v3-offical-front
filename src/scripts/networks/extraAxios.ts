@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:7788/api",
+  // 超时毫秒
   timeout: 60000,
   withCredentials: false,
   headers: {

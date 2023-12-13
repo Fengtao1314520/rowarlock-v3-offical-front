@@ -109,11 +109,13 @@ export function mockTaskResultIcon(tStatus: TaskStatus): string {
 
 /**
  * @description: 根据 TaskType 获取对应的 title ZH
- * @param title TaskType
+ * @param tTypename TaskType
  */
-export function mockTransTitleZH(title: string): string {
+export function mockTransTitleZH(tTypename: string): string {
+  //tTypename转为首字母大写
+  tTypename = tTypename.charAt(0).toUpperCase() + tTypename.slice(1);
   let result = "";
-  switch (title) {
+  switch (tTypename) {
     case String(TaskType.None):
       result = "普通任务";
       break;
@@ -135,6 +137,9 @@ export function mockTransTitleZH(title: string): string {
     case String(TaskType.Release):
       result = "释放任务";
       break;
+    default:
+      result = "普通任务";
+      break;
   }
   return result;
 }
@@ -144,6 +149,9 @@ export function mockTransTitleZH(title: string): string {
  * @param tTypename taskType的名字
  */
 export function mockTaskTypeColor(tTypename: string): string {
+  //tTypename转为首字母大写
+  tTypename = tTypename.charAt(0).toUpperCase() + tTypename.slice(1);
+
   let color = "";
 
   switch (tTypename) {
@@ -168,6 +176,9 @@ export function mockTaskTypeColor(tTypename: string): string {
     case String(TaskType.Release):
       color = "deep-purple-accent-4";
       break;
+    default:
+      color = "grey-lighten-1";
+      break;
   }
 
   return color;
@@ -178,6 +189,8 @@ export function mockTaskTypeColor(tTypename: string): string {
  * @param tTypename taskType名字
  */
 export function mockTaskTypeIcon(tTypename: string): string {
+  //tTypename转为首字母大写
+  tTypename = tTypename.charAt(0).toUpperCase() + tTypename.slice(1);
   let icon = "";
   switch (tTypename) {
     case String(TaskType.None):
@@ -200,6 +213,9 @@ export function mockTaskTypeIcon(tTypename: string): string {
       break;
     case String(TaskType.Release):
       icon = "fa:fas fa-kaaba";
+      break;
+    default:
+      icon = "fa:fas fa-spinner";
       break;
   }
   return icon;

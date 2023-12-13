@@ -45,6 +45,7 @@ import { HttpUserInfo } from "@/scripts/networks/communicate/httpUserInfo.ts";
 import { HttpStatistics } from "@/scripts/networks/communicate/httpStatistics.ts";
 import { IuDUser } from "@/scripts/cTypes/internal/IuDUser.ts";
 import { CuDStatistics } from "@/scripts/cTypes/communicate/CuDStatistics.ts";
+import { nowDateTime } from "@/scripts/third/commonFunc.ts";
 
 // 参数
 let userInfos = ref<IuDUser>();
@@ -61,6 +62,14 @@ async function init() {
     userInfos.value = mockUser();
   }
 
+  // todo: 异步更新当前用户的信息
+  if (userInfos.value) {
+    let putUserInfo: IuDUser = userInfos.value;
+    // 更新用户信息
+    putUserInfo.Ulogintime = nowDateTime();
+    await HttpUserInfo.PutUserInfo(putUserInfo.Id, putUserInfo);
+  }
+
   // info: 异步获取当前用户的统计信息
   let tempuserStatistics = await HttpStatistics.GetStatistics(
     "c5dfead9-9bb1-4800-a00c-da71ccb5fe19",
@@ -72,10 +81,9 @@ async function init() {
   }
 }
 
+// 初始化
 onMounted(async () => {
   await init();
-  console.log(userInfos.value);
-  console.log(userStatistics.value);
 });
 </script>
 

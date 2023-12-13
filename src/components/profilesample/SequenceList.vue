@@ -55,7 +55,7 @@
                   <p>{{ (dialogItem as IuDTask).TaskName }}</p>
                   <v-spacer />
                   <v-chip
-                    label
+                    :label="true"
                     class="text-caption"
                     :color="getTaskTypeColor((dialogItem as IuDTask).Type)"
                   >
@@ -68,7 +68,7 @@
               </template>
             </v-card-item>
             <v-card-text class="py-0">
-              <v-row align="center" no-gutters>
+              <v-row align="center" :no-gutters="true">
                 <v-col class="text-left mr-4" cols="2">
                   <v-icon
                     :icon="getMockTaskTypeIcon((dialogItem as IuDTask).Type)"
@@ -143,7 +143,7 @@ import {
   mockTaskTypeIcon,
   mockTransTitleZH,
 } from "@/scripts/mock/pages/calendarList.ts";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 import { getMockTimeDiffPercentage } from "@/scripts/mock/pages/calendarCore.ts";
 
@@ -155,39 +155,57 @@ const props = defineProps({
   dailyTasks: Array<IuDTask>,
 });
 
-// 本地任务列表
-let localDailyTasks = props.dailyTasks as Array<IuDTask>;
-
 // 是否打开弹窗
 const openDialog = ref(false);
 
 // 弹窗使用的任务
 const dialogItem = ref({});
 
+// 弹窗内进度展示
 const openDialogProgress = ref(0);
+
+// 本地任务列表
+const localDailyTasks = ref<Array<IuDTask>>([]);
+
+// 监听
+watch(
+  () => props.dailyTasks,
+  (newVal) => {
+    if (newVal !== undefined) {
+      localDailyTasks.value = newVal;
+    }
+  },
+  { immediate: true, deep: true },
+);
 
 /**
  * @description 任务类型颜色
  * @param tType 任务类型
  */
-function getTaskTypeColor(tType: string) {
-  return mockTaskTypeColor(tType);
+function getTaskTypeColor(tType: string | undefined) {
+  if (tType !== undefined) {
+    return mockTaskTypeColor(tType);
+  }
 }
 
 /**
  * @description 任务类型图标
  * @param tType
  */
-function getMockTaskTypeIcon(tType: string) {
-  return mockTaskTypeIcon(tType);
+function getMockTaskTypeIcon(tType: string | undefined) {
+  if (tType !== undefined) {
+    return mockTaskTypeIcon(tType);
+  }
 }
 
 /**
- * @description 任务title
- * @param title
+ * @description 任务类型转中文
+ * @param tType
  */
-function transTitle(title: string) {
-  return mockTransTitleZH(title);
+function transTitle(tType: string | undefined) {
+  if (tType !== undefined) {
+    return mockTransTitleZH(tType);
+  }
 }
 
 /**
@@ -204,6 +222,7 @@ function openDetailDialog(item: any) {
  * @description 关闭任务详情弹窗
  */
 function closeDetailDialog() {
+  // fix: 关闭弹窗时，清空任务详情,也会触发watch
   dialogItem.value = {};
   openDialog.value = false;
 }

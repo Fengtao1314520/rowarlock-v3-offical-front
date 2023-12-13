@@ -50,6 +50,7 @@ import {
   mockTransTitleZH,
 } from "@/scripts/mock/pages/calendarList.ts";
 import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
+import { computed, ref, watch } from "vue";
 
 // 任务列表
 const props = defineProps({
@@ -59,19 +60,37 @@ const props = defineProps({
   dailyTasks: Array<IuDTask>,
 });
 
-// 获取本地任务
-let localDailyTasks: Array<IuDTask> = props.dailyTasks as Array<IuDTask>;
+// 本地任务列表
+const localDailyTasks = ref<Array<IuDTask>>([]);
+
+// 监听
+watch(
+  () => props.dailyTasks,
+  (newVal) => {
+    if (newVal !== undefined) {
+      localDailyTasks.value = newVal;
+    }
+  },
+  { immediate: true, deep: true },
+);
+
 // 获取本地分组任务
-let localGroupedTasks = mockGroupTaskByType(localDailyTasks);
+const localGroupedTasks = computed(() => {
+  return mockGroupTaskByType(localDailyTasks.value);
+});
 // 赋值主alert颜色
-let groupedTasks = mockGroupAddExtra(localGroupedTasks);
+let groupedTasks = computed(() => {
+  return mockGroupAddExtra(localGroupedTasks.value);
+});
 
 /**
- * @description 返回任务标题
- * @param title 任务标题
+ * @description 任务类型转中文
+ * @param tType
  */
-function transTitle(title: string) {
-  return mockTransTitleZH(title);
+function transTitle(tType: string | undefined) {
+  if (tType !== undefined) {
+    return mockTransTitleZH(tType);
+  }
 }
 </script>
 

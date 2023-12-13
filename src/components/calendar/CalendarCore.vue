@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { createMockAttribute } from "@/scripts/mock/pages/calendarCore.ts";
 import CalendarView from "@/components/calendar/CalendarView.vue";
 import CalendarList from "@/components/calendar/CalendarList.vue";
@@ -22,25 +22,28 @@ const props = defineProps({
   dailyTasks: Array<IuDTask>,
 });
 
-// mock测试数据
-let localAttributes = [];
+const attributes = ref<Array<any>>([]);
 
-// 生成 attributes，给v-calendar使用
-props.dailyTasks?.forEach((item) => {
-  let attr = createMockAttribute(item);
-  localAttributes.push(attr);
-});
+watch(
+  () => props.dailyTasks,
+  (newVal) => {
+    // 生成 attributes，给v-calendar使用
+    newVal?.forEach((item) => {
+      let attr = createMockAttribute(item);
+      attributes.value.push(attr);
+    });
 
-// TODO: 放入当天
-let nowDay = {
-  highlight: {
-    color: "gray",
-    fillMode: "outline",
+    // TODO: 放入当天
+    let nowDay = {
+      highlight: {
+        color: "gray",
+        fillMode: "outline",
+      },
+      dates: new Date(),
+      popover: false,
+    };
+    attributes.value.push(nowDay);
   },
-  dates: new Date(),
-  popover: false,
-};
-localAttributes.push(nowDay);
-
-const attributes = ref(localAttributes);
+  { immediate: true, deep: true },
+);
 </script>

@@ -19,9 +19,9 @@ export class Http {
       url: url,
     };
 
-    // 如果headers没有，就定义一个
-    if (headers === undefined) {
-      headers = { "Content-Type": "application/json" };
+    // 如果headers有，就复写
+    if (headers !== undefined) {
+      axiosInstance.defaults.headers.post[headers.key] = headers.value;
     }
 
     // 计时开始
@@ -56,9 +56,9 @@ export class Http {
       url: url,
     };
 
-    // 如果headers没有，就定义一个
-    if (headers === undefined) {
-      headers = { "Content-Type": "application/json" };
+    // 如果headers有，就复写
+    if (headers !== undefined) {
+      axiosInstance.defaults.headers.post[headers.key] = headers.value;
     }
 
     // 计时开始
@@ -69,22 +69,61 @@ export class Http {
       // 查看data,包含condition字段
       if (data["condition"]) {
         // 转为url编码
-        data["condition"] = encodeURI(data["condition"]);
+        data["condition"] = encodeURI(JSON.stringify(data["condition"]));
       }
     }
 
-    // 发送
-    let response = await axiosInstance.get(url, {
-      params: data,
-    });
+    try {
+      // 发送
+      let response = await axiosInstance.get(url, {
+        params: data,
+      });
+      serverReqType.statuscode = response.status;
+      // 对象转json字符串转为对象
+      serverReqType.data = response.data;
+    } catch (e) {
+      serverReqType.data.resdata = e;
+    } finally {
+      // 计时结束
+      let endTime = performance.now();
+      // 返回值
+      serverReqType.duration = endTime - startTime;
+    }
+    return serverReqType;
+  }
 
-    // 计时结束
-    let endTime = performance.now();
-    serverReqType.duration = endTime - startTime;
-    serverReqType.statuscode = response.status;
-    // 对象转json字符串转为对象
-    serverReqType.data = response.data;
-    // 返回值
+  static async put(url: string, data: any, headers?: Record<string, string>) {
+    // 返回结果
+    let serverReqType: ServerReqType = {
+      data: { rescode: 0, resdata: null, resmessage: "" },
+      duration: 0,
+      method: Method.PUT,
+      statuscode: 0,
+      url: url,
+    };
+
+    // 如果headers有，就复写
+    if (headers !== undefined) {
+      axiosInstance.defaults.headers.post[headers.key] = headers.value;
+    }
+
+    // 计时开始
+    let startTime = performance.now();
+
+    try {
+      let response = await axiosInstance.put(url, data);
+
+      serverReqType.statuscode = response.status;
+      // 对象转json字符串转为对象
+      serverReqType.data = response.data;
+    } catch (e) {
+      serverReqType.data.resdata = e;
+    } finally {
+      // 计时结束
+      let endTime = performance.now();
+      // 返回值
+      serverReqType.duration = endTime - startTime;
+    }
     return serverReqType;
   }
 }
