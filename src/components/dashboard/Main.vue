@@ -43,7 +43,7 @@ const dailyTasks = ref<Array<IuDTask>>([]);
 async function init() {
   let userid = "c5dfead9-9bb1-4800-a00c-da71ccb5fe19";
   let params = {
-    userid: "c5dfead9-9bb1-4800-a00c-da71ccb5fe19",
+    userid: userid,
     qtype: "list",
     days: 7,
   };
@@ -61,6 +61,5 @@ async function init() {
 // 初始化
 onMounted(async () => {
   await init();
-  // console.log(dailyTasks.value);
 });
 </script>

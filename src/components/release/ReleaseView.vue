@@ -133,7 +133,6 @@
       </v-form>
     </v-card>
   </v-card>
-
   <v-snackbar
     location="top right"
     :timeout="1000"
@@ -156,10 +155,11 @@ import {
   l18i_release,
 } from "@/scripts/l18i/l18i_release";
 import CViewContentList from "@/customization/CViewContentList.vue";
+import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
 
 // 父传子
 const props = defineProps<{
-  release: IuDRelease;
+  release: CuDRelease;
 }>();
 
 //bar是否打开
@@ -209,15 +209,16 @@ let content: Ref<
 watch(
   () => props.release,
   (newvalue) => {
-    localrelease.value = newvalue;
+    let temp: IuDRelease = JSON.parse(newvalue.ReleaseContent);
+    localrelease.value = temp;
     // 初始化
     basicInfos.value = [];
     testEnv.value = [];
     content.value = [];
-    relatedConfig.value = l18i_relatedConfig(newvalue.relatedConfig);
+    relatedConfig.value = l18i_relatedConfig(localrelease.value?.relatedConfig);
 
     // json对象转为KV队列
-    const entries = Object.entries(newvalue.basicInfos);
+    const entries = Object.entries(localrelease.value.basicInfos);
     for (const [key, value] of entries) {
       let keyCn = l18i_release(key);
       basicInfos.value.push({
@@ -226,7 +227,7 @@ watch(
       });
     }
     // 赋值
-    newvalue.testEnv.forEach((tE) => {
+    localrelease.value.testEnv.forEach((tE) => {
       testEnv.value.push({
         prefield: tE.key,
         values: tE.value,
@@ -234,7 +235,7 @@ watch(
     });
 
     // 执行操作
-    let l18iContent = l18i_content(newvalue.content);
+    let l18iContent = l18i_content(localrelease.value.content);
     // 赋值
     l18iContent.forEach((c) => {
       content.value.push({

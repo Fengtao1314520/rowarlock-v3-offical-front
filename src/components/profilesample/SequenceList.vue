@@ -146,6 +146,7 @@ import {
 import { ref, watch } from "vue";
 import { IuDTask } from "@/scripts/cTypes/internal/IuDTask.ts";
 import { getMockTimeDiffPercentage } from "@/scripts/mock/pages/calendarCore.ts";
+import { HttpTask } from "@/scripts/networks/communicate/httpTask.ts";
 
 /**
  * @description PROPS
@@ -212,10 +213,23 @@ function transTitle(tType: string | undefined) {
  * @description 打开任务详情弹窗
  * @param item 任务
  */
-function openDetailDialog(item: any) {
-  dialogItem.value = item;
+async function openDetailDialog(item: IuDTask) {
   openDialog.value = true;
-  openDialogProgress.value = CalcDiff(item);
+  let usetask = item;
+  // info: 获取task详情，往这里扔
+  let userid = item.AssigneeUserId;
+  let params = {
+    userid: userid,
+    qtype: "detail",
+    id: item.Id,
+  };
+  // 获取用户的task
+  let tempTasks = await HttpTask.GetTaskDetailById(userid, params);
+  if (tempTasks.data.rescode === 200) {
+    usetask = tempTasks.data.resdata[0];
+  }
+  dialogItem.value = usetask;
+  openDialogProgress.value = CalcDiff(usetask);
 }
 
 /**

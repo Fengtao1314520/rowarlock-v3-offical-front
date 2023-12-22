@@ -15,6 +15,7 @@ import {
   getRandomInRange,
   randomBoolean,
 } from "@/scripts/third/commonFunc.ts";
+import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
 
 /**
  * @description 创建随机的Release记录
@@ -40,33 +41,6 @@ export function mockRelease() {
   });
 
   return releaseList;
-}
-
-/**
- * @description: 根据 year 数组，按照 year 分组
- * @param releaseTasks
- * @param releaseTasks
- */
-export function mockGroupReleaseTask(
-  releaseTasks: Array<{ year: number; release: IuDRelease }>,
-) {
-  return releaseTasks.reduce(
-    (groups, item) => {
-      const key = item.year; // 以 year 作为分组依据
-      if (!groups[key]) {
-        groups[key] = {
-          year: key,
-          items: [],
-        };
-      }
-      groups[key].items.push(item);
-      return groups;
-    },
-    {} as Record<
-      string,
-      { year: number; items: Array<{ year: number; release: IuDRelease }> }
-    >,
-  );
 }
 
 /**
@@ -146,9 +120,39 @@ function createMockReleaseRecord(year: number) {
     content: content,
   };
 
-  //console.log(releaseTask);
   return {
     year: year,
     release: releaseTask,
   };
+}
+
+/**
+ * @description: 根据 year 数组，按照 year 分组
+ * @param releaseTasks
+ * @param releaseTasks
+ */
+export function groupReleaseTaskByYear(
+  releaseTasks: Array<{ year: number; release: CuDRelease }>,
+): Record<string, { year: string; items: Array<IuDRelease> }> {
+  let tempresult: Record<string, { year: string; items: Array<IuDRelease> }> =
+    {};
+  for (let i = 0; i < releaseTasks.length; i++) {
+    if (!tempresult[releaseTasks[i].year]) {
+      tempresult[releaseTasks[i].year] = {
+        year: releaseTasks[i].year.toString(),
+        items: [],
+      };
+    }
+    let year = tempresult[releaseTasks[i].year].year;
+    //todo: 转换为IuDRelease
+    let jsonObj: IuDRelease = JSON.parse(
+      JSON.stringify(releaseTasks[i].release),
+    );
+    if (tempresult[year].items.length === 0) {
+      tempresult[year].items.push(jsonObj);
+    } else {
+      tempresult[year].items.push(jsonObj);
+    }
+  }
+  return tempresult;
 }
