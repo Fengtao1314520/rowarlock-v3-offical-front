@@ -155,11 +155,13 @@ import {
   l18i_release,
 } from "@/scripts/l18i/l18i_release";
 import CViewContentList from "@/customization/CViewContentList.vue";
+import { HttpRelease } from "@/scripts/networks/communicate/httpRelease.ts";
+import { mockRelease } from "@/scripts/mock/mockRelease.ts";
 import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
 
 // 父传子
 const props = defineProps<{
-  release: CuDRelease;
+  release: { id: string; name: string; year: number };
 }>();
 
 //bar是否打开
@@ -208,44 +210,71 @@ let content: Ref<
 // 监听releaseTask的变化
 watch(
   () => props.release,
-  (newvalue) => {
-    let temp: IuDRelease = JSON.parse(newvalue.ReleaseContent);
-    localrelease.value = temp;
-    // 初始化
-    basicInfos.value = [];
-    testEnv.value = [];
-    content.value = [];
-    relatedConfig.value = l18i_relatedConfig(localrelease.value?.relatedConfig);
-
-    // json对象转为KV队列
-    const entries = Object.entries(localrelease.value.basicInfos);
-    for (const [key, value] of entries) {
-      let keyCn = l18i_release(key);
-      basicInfos.value.push({
-        prefield: keyCn,
-        values: value,
-      });
-    }
-    // 赋值
-    localrelease.value.testEnv.forEach((tE) => {
-      testEnv.value.push({
-        prefield: tE.key,
-        values: tE.value,
-      });
-    });
-
-    // 执行操作
-    let l18iContent = l18i_content(localrelease.value.content);
-    // 赋值
-    l18iContent.forEach((c) => {
-      content.value.push({
-        prefield: c.key,
-        values: c.value as string[],
-      });
-    });
+  async (newvalue) => {
+    await resetRelease(newvalue);
   },
   { immediate: true, deep: true },
 );
+
+async function resetRelease(releaseInfo: {
+  id: string;
+  name: string;
+  year: number;
+}) {
+  // 初始化
+  basicInfos.value = [];
+  testEnv.value = [];
+  content.value = [];
+
+  //远程获取
+  // info 获取当前年的释放记录
+  let userid = "c5dfead9-9bb1-4800-a00c-da71ccb5fe19";
+  let params = {
+    userid: userid,
+    id: releaseInfo.id,
+    qtype: "detail",
+  };
+  // 获取用户的task
+  let temp: CuDRelease;
+  let tempTasks = await HttpRelease.GetReleaseDetailByIdEvent(userid, params);
+  if (tempTasks.data.rescode === 200) {
+    temp = tempTasks.data.resdata;
+  } else {
+    temp = mockRelease(releaseInfo.id, releaseInfo.name, releaseInfo.year);
+  }
+
+  // 转一下，再转一下
+  localrelease.value = JSON.parse(JSON.stringify(temp));
+
+  relatedConfig.value = l18i_relatedConfig(localrelease.value.relatedConfig);
+
+  // json对象转为KV队列
+  const entries = Object.entries(localrelease.value.basicInfos);
+  for (const [key, value] of entries) {
+    let keyCn = l18i_release(key);
+    basicInfos.value.push({
+      prefield: keyCn,
+      values: value,
+    });
+  }
+  // 赋值
+  localrelease.value.testEnv.forEach((tE) => {
+    testEnv.value.push({
+      prefield: tE.key,
+      values: tE.value,
+    });
+  });
+
+  // 执行操作
+  let l18iContent = l18i_content(localrelease.value.content);
+  // 赋值
+  l18iContent.forEach((c) => {
+    content.value.push({
+      prefield: c.key,
+      values: c.value as string[],
+    });
+  });
+}
 
 // 当前写状态
 function changeWriteStatus() {
@@ -267,6 +296,7 @@ function changeWriteStatus() {
     snackbar.value = true;
   }
 }
+
 function openMoreInfo(taskid: string) {}
 </script>
 

@@ -1,6 +1,5 @@
 import {
   getRandomDateInThisMonth,
-  getYearsAndBefore3,
   randomIntFrom3To10,
 } from "@/scripts/third/smallThird";
 import {
@@ -18,37 +17,64 @@ import {
 import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
 
 /**
- * @description 创建随机的Release记录
+ * @description 创建随机的Release记录, 按年份创建
  * @constructor
  */
-export function mockRelease() {
-  //随机数
-  let numbers = randomIntFrom3To10();
-  //年份
-  let years = getYearsAndBefore3();
-
-  // 定义一个空数组
-  let releaseList: Array<{
-    year: number;
-    release: IuDRelease;
-  }> = [];
-
-  // 按{year: number;release: IuDRelease;}格式插入
-  years.forEach((year) => {
-    for (let i = 0; i < numbers; i++) {
-      releaseList.push(createMockReleaseRecord(year));
-    }
-  });
-
-  return releaseList;
+export function mockReleaseBaseYear(): Array<{ year: number; count: number }> {
+  return [
+    {
+      year: 2023,
+      count: 10,
+    },
+    {
+      year: 2022,
+      count: 10,
+    },
+  ];
 }
 
 /**
- * 私有方法
- * 年
+ * @description 创建一个随机的Release记录列表,只包含id和name(title)
  * @param year
  */
-function createMockReleaseRecord(year: number) {
+export function mockReleaseList(year: number): Array<any> {
+  //随机数
+  let numbers = randomIntFrom3To10();
+
+  // 定义一个空数组
+  let releaseList: Array<any> = [];
+  for (let i = 0; i < numbers; i++) {
+    // 塞入
+    releaseList.push({ id: createUUID(), name: `${year}年第${i + 1}次发布` });
+  }
+  return releaseList;
+}
+
+export function mockRelease(id: string, name: string, year: number) {
+  let oneitem: IuDRelease = createMockReleaseItem(name, id, year);
+  // IcDRelease 转 CuDRelease
+  let cudRelease: CuDRelease = {
+    AssigneeUserId: id,
+    CreateDateTime: oneitem.createDate,
+    CreateUserId: id,
+    Id: oneitem.taskId,
+    ModifyDateTime: oneitem.modifyDate,
+    ReleaseContent: JSON.stringify(oneitem),
+    ReleaseDescription: oneitem.description,
+    ReleaseName: name,
+    Status: "completed",
+  };
+
+  return cudRelease;
+}
+
+/**
+ * @description 创建一个随机的Release记录
+ * @param name
+ * @param id
+ * @param year
+ */
+export function createMockReleaseItem(name: string, id: string, year: number) {
   // 基本信息
   let basicTaskInfos: BasicInfos = {
     branchNumber: getRandomInRange(49999, 89999),
@@ -112,18 +138,15 @@ function createMockReleaseRecord(year: number) {
     createDate: Date.now().toString(),
     description: "RoWarlock 最新释放",
     modifyDate: Date.now().toString(),
-    taskId: createUUID(),
-    title: "RoWarlock 释放",
+    taskId: id,
+    title: name,
     basicInfos: basicTaskInfos,
     relatedConfig: relatedConfig,
     testEnv: testEnv,
     content: content,
   };
 
-  return {
-    year: year,
-    release: releaseTask,
-  };
+  return releaseTask;
 }
 
 /**

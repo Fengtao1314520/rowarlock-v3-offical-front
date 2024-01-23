@@ -21,7 +21,6 @@
         v-for="(item, index) in localReleaseArray"
         :key="index"
         append-icon="mdi-chevron-down"
-        @click="getReleaseListByUserId(item)"
       >
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props">
@@ -34,6 +33,7 @@
               <v-sheet
                 color="blue-accent-2"
                 class="ml-2 text-h6 text-white rounded-e-xl"
+                @click="getReleaseListByUserId(item)"
               >
                 <p class="font-weight-bold ml-2">
                   {{ item.year }}
@@ -47,7 +47,7 @@
             class="py-0"
             v-for="(relItem, relIndex) in currentYearRelease"
             :key="relIndex"
-            @click="selectSingleReleaseRecord(relItem)"
+            @click="selectSingleReleaseRecord(relItem, item.year)"
           >
             <template v-slot:prepend>
               <v-icon class="mr-0" color="deep-purple-accent-4"
@@ -60,7 +60,7 @@
                 class="ml-2 text-body-2 text-white"
               >
                 <p class="font-weight-bold ml-2">
-                  {{ relItem.ReleaseName }}
+                  {{ relItem.name }}
                 </p>
               </v-sheet>
             </template>
@@ -74,7 +74,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { HttpRelease } from "@/scripts/networks/communicate/httpRelease.ts";
-import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
+import { mockReleaseList } from "@/scripts/mock/mockRelease.ts";
 
 const props = defineProps({
   releaseRecord: Array<{ year: number; count: number }>,
@@ -83,7 +83,7 @@ const props = defineProps({
 const railNav = ref<boolean>(false);
 
 //当前选择的年份的释放记录列表
-const currentYearRelease = ref<Array<CuDRelease>>([]);
+const currentYearRelease = ref<Array<any>>([]);
 
 // 事件，发送给父组件
 const emit = defineEmits(["selectSingleReleaseRecord"]);
@@ -114,7 +114,6 @@ watch(
  * @param item
  */
 async function getReleaseListByUserId(item: any) {
-  // console.log(item);
   // info 获取当前年的释放记录
   let userid = "c5dfead9-9bb1-4800-a00c-da71ccb5fe19";
   let params = {
@@ -125,20 +124,27 @@ async function getReleaseListByUserId(item: any) {
   // 获取用户的task
   let tempTasks = await HttpRelease.GetReleaseListByUserId(userid, params);
   if (tempTasks.data.rescode === 200) {
-    currentYearRelease.value = tempTasks.data.resdata[0];
-    console.log(currentYearRelease.value);
+    currentYearRelease.value = tempTasks.data.resdata;
   } else {
-    //todo:mock数据
+    currentYearRelease.value = mockReleaseList(item.year);
   }
 }
 
 /**
  * @description 选择单个释放记录
  * @param item
+ * @param year
  */
-function selectSingleReleaseRecord(item: CuDRelease) {
+function selectSingleReleaseRecord(
+  item: { id: string; name: string },
+  year: number,
+) {
   // 转入父组件
-  emit("selectSingleReleaseRecord", item);
+  emit("selectSingleReleaseRecord", {
+    id: item.id,
+    name: item.name,
+    year: year,
+  });
 }
 </script>
 

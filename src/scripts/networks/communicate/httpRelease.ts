@@ -36,4 +36,21 @@ export class HttpRelease {
     };
     return await Http.get(ApiUrl.RELEASE.value, data);
   }
+
+  /**
+   * @description 获取用户对应的一个任务详细
+   * @param userid
+   * @param params
+   * @constructor
+   */
+  static async GetReleaseDetailByIdEvent(
+    userid: string,
+    params: any,
+  ): Promise<ServerReqType> {
+    let data = {
+      userid: userid,
+      condition: params,
+    };
+    return await Http.get(ApiUrl.RELEASE.value, data);
+  }
 }

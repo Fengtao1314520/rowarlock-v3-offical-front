@@ -13,18 +13,22 @@ import ReleaseNav from "@/components/release/ReleaseNav.vue";
 import { onMounted, ref } from "vue";
 import ReleaseView from "@/components/release/ReleaseView.vue";
 import { HttpRelease } from "@/scripts/networks/communicate/httpRelease.ts";
-import { CuDRelease } from "@/scripts/cTypes/communicate/CuDRelease.ts";
+import { mockReleaseBaseYear } from "@/scripts/mock/mockRelease.ts";
 
 /// 释放记录 列表
 const releaseRecord = ref<Array<{ year: number; count: number }>>([]);
 
-const selectedRelease = ref<CuDRelease>();
+const selectedRelease = ref<{ id: string; name: string; year: number }>();
 
 /**
  * @description 选择单个释放记录
  * @param item
  */
-function selectSingleReleaseRecord(item: CuDRelease) {
+function selectSingleReleaseRecord(item: {
+  id: string;
+  name: string;
+  year: number;
+}) {
   // 赋值
   selectedRelease.value = item;
 }
@@ -44,8 +48,8 @@ async function init() {
   if (tempReleases.data.rescode === 200) {
     releaseRecord.value = tempReleases.data.resdata;
   } else {
-    // todo:改造
-    // releaseRecord.value = mockRelease();
+    // info: mock数据
+    releaseRecord.value = mockReleaseBaseYear();
   }
 }
 
